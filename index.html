@@ -1190,7 +1190,7 @@ function setStatus(s) { $('#status').textContent = s; }
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
 /* ===================== Banco de dados no GitHub (arquivos JSON num repositório privado) ===================== */
-const GH_PADRAO = { owner: 'estevamfreitas1985-debug', repo: 'fechamento-rh-dados', branch: 'main', pasta: 'dados' };
+const GH_PADRAO = { owner: 'diversemodas1997-cmyk', repo: '-fechamento-rh-dados', branch: 'main', pasta: 'dados' };
 function ghCfg() { try { const c = JSON.parse(localStorage.getItem('gh:cfg') || 'null'); return c && c.token ? { ...GH_PADRAO, ...c } : null; } catch (e) { return null; } }
 function b64dec(s) { const bin = atob(s.replace(/\s/g, '')); return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0))); }
 function b64enc(str) { const b = new TextEncoder().encode(str); let bin = ''; for (let i = 0; i < b.length; i += 0x8000) bin += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(bin); }
