@@ -145,6 +145,34 @@ td.copied input.cell { border: 1px dashed var(--warn); }
 .muted { color: var(--fg-muted); }
 .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .hist { display: grid; gap: 8px; }
+.doc-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; display: grid; grid-template-columns: 1fr 160px; gap: 14px; }
+.doc-card.analisando { grid-template-columns: 1fr; }
+.doc-card .cabeca { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 8px; }
+.doc-card .tipo { font-size: 15px; font-weight: 600; }
+.doc-card .grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 6px 14px; margin: 8px 0; }
+.doc-card .grade div { font-size: 13px; }
+.doc-card .grade .k { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--fg-muted); }
+.doc-card .resumo { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; margin: 8px 0; line-height: 1.45; }
+.doc-card .fazer { border-left: 3px solid var(--accent); padding: 6px 10px; margin: 8px 0; }
+.doc-card .thumb { width: 160px; height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); cursor: zoom-in; }
+.doc-card .thumb.grande { position: fixed; inset: 5%; width: auto; height: auto; max-width: 90vw; max-height: 90vh; margin: auto; object-fit: contain; z-index: 50; cursor: zoom-out; box-shadow: 0 10px 40px rgba(0,0,0,.4); background: var(--surface); }
+.doc-card select.cell, .doc-card input.cell { font: inherit; padding: 3px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); }
+.doc-card .acoes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.doc-lista .item { align-items: flex-start; }
+.dlg-bg { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; z-index: 60; padding: 16px; }
+.dlg { background: var(--surface); color: var(--fg); border-radius: 12px; padding: 18px 20px; width: min(420px, 100%); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+.dlg h3 { margin: 0 0 10px; font-size: 16px; }
+.dlg label { display: block; margin: 8px 0; font-size: 13px; color: var(--fg-muted); }
+.dlg input, .dlg select { display: block; width: 100%; box-sizing: border-box; margin-top: 4px; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); }
+.dlg .acoes { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+.dlg .msg { white-space: pre-wrap; margin: 0 0 6px; }
+.tab .badge { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 6px; border-radius: 99px; background: var(--crit); color: #fff; font-size: 11px; line-height: 18px; text-align: center; font-weight: 600; }
+#tbl-ex td input.cell, #tbl-ex td select.cell { font-family: var(--font); text-align: left; width: auto; border-color: var(--line); background: var(--surface); }
+#tbl-ex td input[type=date].cell { width: 140px; }
+#tbl-ex td.name { min-width: 220px; }
+#tbl-ex td.row-actions { white-space: nowrap; }
+.doc-lista .item .sub { font-size: 12.5px; color: var(--fg-muted); }
+@media (max-width: 640px) { .doc-card { grid-template-columns: 1fr; } .doc-card .thumb { width: 100%; height: 180px; } }
 .hist .item { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .hist .item .t { font-weight: 600; }
 .progress { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; margin-bottom: 12px; display: none; }
@@ -153,7 +181,19 @@ td.copied input.cell { border: 1px dashed var(--warn); }
 @keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(400%); } }
 @media (prefers-reduced-motion: reduce) { .progress i { animation: none; width: 100%; } }
 .select-match { max-width: 220px; }
-@media (max-width: 640px) { .status { display: none; } .tile .v { font-size: 18px; } }
+@media (max-width: 640px) { .status { display: none; } .tile .v { font-size: 18px; } .topbar { padding: 0 8px; } .brand { display: none; } .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; } .tabs::-webkit-scrollbar { display: none; } .tab { padding: 12px 8px 9px; font-size: 13px; white-space: nowrap; } main { padding: 10px; } .toolbar { gap: 8px; } .drop { padding: 18px 12px; } .drop strong { font-size: 14px; } .btn { min-height: 40px; } }
+.hoje-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.hoje-bloco { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.hoje-bloco h2 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.hoje-bloco h2 .n { font-family: var(--mono); font-size: 13px; padding: 0 7px; border-radius: 99px; background: var(--surface-2); }
+.hoje-bloco h2 .n.crit { background: var(--crit-soft); color: var(--crit); } .hoje-bloco h2 .n.warn { background: var(--warn-soft); color: var(--warn); }
+.hoje-bloco ul { margin: 0; padding-left: 18px; } .hoje-bloco li { margin: 3px 0; font-size: 13px; }
+.hoje-bloco .ok { color: var(--ok); font-size: 13px; }
+.hoje-bloco .ir { float: right; }
+.ficha h3 { font-size: 14px; margin: 14px 0 6px; color: var(--accent); }
+.ficha table { width: 100%; border-collapse: collapse; font-size: 13px; } .ficha td, .ficha th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+.cam-btn { margin-top: 8px; }
+
 .inline-help { font-size: 12.5px; color: var(--fg-muted); margin-top: 6px; }
 details.cfg { margin-top: 18px; }
 details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted); }
@@ -163,11 +203,15 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
 <div class="topbar">
   <div class="brand"><span class="dot"></span>Fechamento de Ponto</div>
   <div class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-tab="fechamento" id="tab-fechamento">Fechamento</button>
+    <button class="tab" role="tab" aria-selected="true" data-tab="hoje" id="tab-hoje">Hoje<span class="badge" id="hoje-badge" hidden></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="fechamento" id="tab-fechamento">Fechamento</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="colaboradores" id="tab-colaboradores">Colaboradores</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="prazos" id="tab-prazos">Prazos</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="ferias" id="tab-ferias">Férias</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="faltas" id="tab-faltas">Faltas</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="holerite" id="tab-holerite">Holerites</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="documentos" id="tab-documentos">Documentos</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="exames" id="tab-exames">Exames<span class="badge" id="ex-badge" hidden></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="historico" id="tab-historico">Histórico</button>
   </div>
   <div class="status" id="status">Pronto</div>
@@ -175,7 +219,13 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
 </div>
 
 <main>
-  <section class="panel active" id="panel-fechamento">
+  <section class="panel active" id="panel-hoje">
+    <h1>Hoje</h1>
+    <p class="lead" id="hoje-lead">Tudo o que precisa de atenção nos próximos 30 dias, nas duas empresas. Clique em "ver" para ir à aba certa.</p>
+    <div class="toolbar"><button class="btn" id="btn-hoje-copiar">Copiar resumo</button><button class="btn" id="btn-hoje-excel">Exportar para o contador (Excel)</button><button class="btn" id="btn-hoje-atualizar">Atualizar</button></div>
+    <div class="hoje-grid" id="hoje-grid"><div class="muted">Carregando…</div></div>
+  </section>
+  <section class="panel" id="panel-fechamento">
     <h1>Fechamento do mês</h1>
     <p class="lead">Solte o espelho de ponto do STELANTO (PDF geral ou individuais). O aplicativo lê cada colaborador, preenche as colunas do ponto e o prêmio de assiduidade, e gera a planilha no formato da contabilidade.</p>
 
@@ -233,7 +283,7 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
       <div class="field" style="flex:1"><label for="cad-nome">Nome completo (como aparece no STELANTO)</label><input type="text" id="cad-nome" placeholder="NOME DO COLABORADOR" style="width:100%"></div>
       <button class="btn primary" id="btn-cad-add">Adicionar</button>
     </div>
-    <div class="tablewrap"><table id="tbl-cad"><thead><tr><th>Código</th><th>Nome</th><th>Prêmio fixo (R$)</th><th>Ajuda de custo (R$)</th><th>Vale transporte (R$ desc.)</th><th>Situação</th><th></th></tr></thead><tbody></tbody></table></div>
+    <div class="tablewrap"><table id="tbl-cad"><thead><tr><th>Código</th><th>Nome</th><th>Admissão</th><th>Prêmio fixo (R$)</th><th>Ajuda de custo (R$)</th><th>Vale transporte (R$ desc.)</th><th>Situação</th><th></th></tr></thead><tbody></tbody></table></div>
     <details class="cfg">
       <summary>Dados da empresa usados no cabeçalho da planilha</summary>
       <div class="cfg-grid">
@@ -258,6 +308,19 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
     <div id="prazos-avisos"></div>
     <div class="tablewrap"><table id="tbl-prazos"><thead><tr><th>Colaborador</th><th>Admissão</th><th>Experiência</th><th>Férias</th><th>Afastamento</th><th></th></tr></thead><tbody></tbody></table></div>
     <p class="inline-help">Férias: o aplicativo marca sozinho quando o espelho mostrar 10 dias ou mais com status "Férias". Se o colaborador tirou férias antes de você usar o aplicativo, clique em "Férias tiradas" e informe o mês das últimas férias; os períodos anteriores a esse passam a contar como em dia. Limites legais gerais da CLT; confirme a convenção coletiva com a contabilidade.</p>
+  </section>
+
+  <section class="panel" id="panel-ferias">
+    <h1>Férias</h1>
+    <p class="lead">Todos os colaboradores, com o período aquisitivo atual, os dias já gozados e o limite para conceder. Lance as férias de qualquer pessoa, mesmo antes de o período fechar — o app abate do período certo e calcula a volta ao trabalho.</p>
+    <div class="toolbar">
+      <label>Empresa <select id="sel-empresa-fer"><option value="oslo">Oslo Closet</option><option value="diverse">Diverse Estilos</option></select></label>
+      <label>Mostrar <select id="sel-fer-filtro"><option value="todos">todos</option><option value="pendentes">só pendentes / vencidas</option><option value="programadas">só com férias marcadas</option></select></label>
+      <button class="btn" id="btn-fer-copiar">Copiar lista</button>
+    </div>
+    <div class="tiles" id="fer-tiles"></div>
+    <div id="fer-avisos"></div>
+    <div class="tablewrap"><table id="tbl-fer"><thead><tr><th>Colaborador</th><th>Admissão</th><th>Período aquisitivo</th><th>Situação</th><th>Férias marcadas / tiradas</th><th></th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="panel" id="panel-faltas">
@@ -293,6 +356,55 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
       <div class="toolbar"><button class="btn primary" id="btn-hol-aplicar" hidden>Lançar adiantamentos no fechamento</button><button class="btn" id="btn-hol-copiar">Copiar divergências</button><button class="btn" id="btn-hol-limpar">Limpar</button></div>
       <div class="tablewrap"><table id="tbl-hol"><thead><tr><th>Colaborador</th><th>Evento no recibo</th><th class="num">Referência</th><th class="num">Recibo (R$)</th><th class="num">Enviado no fechamento</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
     </div>
+  </section>
+
+  <section class="panel" id="panel-documentos">
+    <h1>Atestados e documentos</h1>
+    <p class="lead">Solte a foto ou o PDF do atestado, da declaração, do aviso de férias ou de qualquer outro documento do colaborador. O aplicativo lê o documento, identifica de quem é, o tipo, o CID, as datas e o período, e resume o que é e o que fazer.</p>
+    <input type="file" id="inp-doc" accept="image/*,application/pdf,.pdf" multiple hidden>
+    <div class="drop" id="drop-doc" tabindex="0" role="button" aria-label="Enviar documento">
+      <strong>Solte aqui o documento (foto, imagem ou PDF)</strong>
+      <p>ou clique para escolher. Pode mandar vários de uma vez; cada um vira um cartão abaixo.</p>
+      <p class="hint">A leitura é feita pela IA do Claude. Na primeira vez o navegador pede sua autorização para o aplicativo usar o Claude.</p>
+    </div>
+    <input type="file" id="inp-doc-cam" accept="image/*" capture="environment" hidden>
+    <button class="btn cam-btn" id="btn-doc-cam">📷 Tirar foto do documento (celular)</button>
+    <div class="progress" id="progress-doc"><i></i></div>
+    <div id="doc-aviso"></div>
+    <div id="doc-cards"></div>
+    <h2 style="margin-top:18px">Documentos salvos</h2>
+    <div class="toolbar">
+      <label>Empresa <select id="sel-empresa-doc"><option value="">Todas</option><option value="oslo">Oslo Closet</option><option value="diverse">Diverse Estilos</option></select></label>
+      <label>Tipo <select id="sel-tipo-doc"><option value="">Todos</option><option value="atestado">Atestado</option><option value="declaracao">Declaração</option><option value="ferias">Férias</option><option value="afastamento">Afastamento INSS</option><option value="outro">Outros</option></select></label>
+      <label>Colaborador <input id="inp-busca-doc" placeholder="nome" style="width:200px"></label>
+    </div>
+    <div class="hist doc-lista" id="doc-lista"></div>
+  </section>
+
+  <section class="panel" id="panel-exames">
+    <h1>Exames médicos (PCMSO)</h1>
+    <p class="lead">Admissional, periódico, retorno ao trabalho, mudança de função e demissional. Informe a data do último exame de cada pessoa uma vez; daí o aplicativo calcula o próximo, avisa com antecedência e mostra no topo o que está vencendo.</p>
+    <div class="toolbar">
+      <label>Empresa <select id="sel-empresa-ex"><option value="oslo">Oslo Closet</option><option value="diverse">Diverse Estilos</option></select></label>
+      <label>Periódico a cada <input id="ex-meses" type="number" min="1" max="36" style="width:60px"> meses</label>
+      <label>Grau de risco <select id="ex-grau"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label>
+      <label>Avisar com <input id="ex-antec" type="number" min="1" max="120" style="width:60px"> dias</label>
+      <label>Mostrar <select id="ex-filtro"><option value="pendentes">só pendentes</option><option value="todos">todos</option><option value="desligados">desligados</option></select></label>
+      <button class="btn" id="btn-ex-copiar">Copiar lista de pendências</button>
+    </div>
+    <input type="file" id="inp-ex" accept="image/*,application/pdf,.pdf" multiple hidden>
+    <div class="drop" id="drop-ex" tabindex="0" role="button" aria-label="Enviar ASO" style="padding:22px 20px">
+      <strong>Solte aqui o ASO (foto ou PDF) — pode ser vários de uma vez</strong>
+      <p>O aplicativo identifica o colaborador, o tipo de exame (admissional, periódico, retorno, mudança de função, demissional), a data e o resultado, e preenche a tabela para você.</p>
+    </div>
+    <input type="file" id="inp-ex-cam" accept="image/*" capture="environment" hidden>
+    <button class="btn cam-btn" id="btn-ex-cam">📷 Tirar foto do ASO (celular)</button>
+    <div class="progress" id="progress-ex"><i></i></div>
+    <div id="ex-cards"></div>
+    <div class="tiles" id="ex-tiles"></div>
+    <div id="ex-avisos"></div>
+    <div class="tablewrap"><table id="tbl-ex"><thead><tr><th>Colaborador</th><th>Admissão</th><th>Último exame</th><th>Próximo exame</th><th>Situação</th><th>Agendado para</th><th></th></tr></thead><tbody></tbody></table></div>
+    <p class="hint muted" style="font-size:12.5px;margin-top:10px">Regras (NR-7): periódico conforme a periodicidade acima (anual, como vocês fazem); retorno ao trabalho no 1º dia de volta após afastamento de 30 dias ou mais; demissional até 10 dias após o desligamento, dispensado se o último exame tem menos de 135 dias (grau de risco 1 e 2) ou 90 dias (grau 3 e 4); admissional antes de começar.</p>
   </section>
 
   <section class="panel" id="panel-historico">
@@ -1112,7 +1224,7 @@ const COL = {
   premioAssid: { key: 'premioAssid', titulo: 'Prêmio Assiduidade', ev: 208, tipo: 'valor', auto: true },
   ajudaCusto: { key: 'ajudaCusto', titulo: 'Ajuda de Custo', ev: 211, tipo: 'valor', auto: true },
   comissao: { key: 'comissao', titulo: 'Comissão', ev: 37, tipo: 'valor', auto: false },
-  valeTransp: { key: 'valeTransp', titulo: 'Desc. Vale Transporte', ev: '', tipo: 'valor', auto: true, curto: 'Desc. Vale Transp.' },
+  valeTransp: { key: 'valeTransp', titulo: 'Desc. Vale Transporte', ev: 48, tipo: 'valor', auto: true, curto: 'Desc. Vale Transp.' },
   outros1: { key: 'outros1', titulo: 'Outros Eventos', ev: 999, tipo: 'valor', auto: false },
   outros2: { key: 'outros2', titulo: 'Outros Eventos', ev: 999, tipo: 'valor', auto: false },
   outros3: { key: 'outros3', titulo: 'Outros Eventos', ev: 999, tipo: 'valor', auto: false },
@@ -1122,7 +1234,7 @@ const COL = {
 function colunasPadrao(ev) {
   return [COL.he50, COL.he100, COL.hnot, COL.diasFaltas, COL.dsrFaltas, COL.horasFaltas, COL.adiant,
     { ...COL.premio, ev: ev.premio }, { ...COL.premioAssid, ev: ev.premioAssid }, { ...COL.ajudaCusto, ev: ev.ajudaCusto }, { ...COL.descCompras, ev: ev.descCompras },
-    COL.comissao, { ...COL.valeTransp, ev: ev.valeTransp || '' }, COL.outros2, COL.outros3, COL.outros4];
+    COL.comissao, { ...COL.valeTransp, ev: ev.valeTransp || 48 }, COL.outros2, COL.outros3, COL.outros4];
 }
 // Desconto de vale transporte FIXO (6% do salário, já em reais) — todo mês o mesmo valor; só muda a pedido.
 const VALE_TRANSPORTE_FIXO = {
@@ -1138,12 +1250,12 @@ const EMPRESAS = {
   oslo: {
     id: 'oslo', rotulo: 'Oslo Closet', razao: 'OSLO CLOSET COMERCIO DE ROUPAS LTDA', codigo: '794', cnpj: '48.246.784/0001-69', arquivo: 'OSLO', premioAssid: 100, toleranciaMin: 30,
     horario: { ini: 7 * 60 + 12, fim: 17 * 60, intervalo: 60 },        // 07:12 às 12:00 e 13:00 às 17:00
-    colunas: colunasPadrao({ premio: 206, premioAssid: 208, ajudaCusto: 211, descCompras: 207, valeTransp: '' })
+    colunas: colunasPadrao({ premio: 206, premioAssid: 208, ajudaCusto: 211, descCompras: 207, valeTransp: 48 })
   },
   diverse: {
     id: 'diverse', rotulo: 'Diverse Estilos', razao: 'DIVERSE ESTILOS', codigo: '795', cnpj: '19.621.497/0001-93', arquivo: 'DIVERSE', premioAssid: 100, toleranciaMin: 30,
     horario: { ini: 7 * 60 + 12, fim: 17 * 60 + 30, intervalo: 90 },   // 07:12 às 12:00 e 13:30 às 17:30
-    colunas: colunasPadrao({ premio: 201, premioAssid: 215, ajudaCusto: 202, descCompras: 208, valeTransp: '' })
+    colunas: colunasPadrao({ premio: 201, premioAssid: 215, ajudaCusto: 202, descCompras: 208, valeTransp: 48 })
   }
 };
 
@@ -1186,7 +1298,13 @@ function parseCell(col, s) { if (col.tipo === 'horas') return parseHoras(s); if 
 function compDe(periodoInicio) { const m = (periodoInicio || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? `${m[3]}-${m[2]}` : ''; }
 function compRotulo(ym) { if (!ym) return ''; const [y, m] = ym.split('-'); const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']; return `${meses[+m - 1]}/${y}`; }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600); }
-function setStatus(s) { $('#status').textContent = s; }
+const APP_VERSAO = 'v40';
+function setStatus(s) { $('#status').textContent = s + ' · ' + APP_VERSAO; }
+// qualquer erro de programação aparece na tela (o painel do Claude não mostra o console)
+function pistaErro(err) { try { const st = String((err && err.stack) || '').split('\n').slice(1, 3).map(l => l.trim().replace(/^at /, '').replace(/https?:\/\/[^\s)]*\//g, '')).join(' < '); return st ? ' [' + st.slice(0, 160) + ']' : ''; } catch (_) { return ''; } }
+function mostrarErroGlobal(msg, err) { try { const t = 'Erro: ' + String(msg).slice(0, 160) + pistaErro(err); toast(t); console.error(t, err); const box = document.getElementById('erro-global') || (() => { const d = document.createElement('div'); d.id = 'erro-global'; d.className = 'notice crit'; d.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:99;font-size:12.5px'; document.body.appendChild(d); return d; })(); box.innerHTML = esc(t) + ' <button class="btn small" onclick="this.parentElement.remove()">fechar</button>'; } catch (_) {} }
+window.addEventListener('error', (e) => { if (e && e.message && !(e.target && e.target.src)) mostrarErroGlobal(e.message + (e.lineno ? ' (linha ' + e.lineno + ')' : ''), e.error); });
+window.addEventListener('unhandledrejection', (e) => { const r = e.reason; mostrarErroGlobal((r && (r.message || r.code)) ? (r.message || r.code) : String(r), r); });
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
 /* ===================== Banco de dados no GitHub (arquivos JSON num repositório privado) ===================== */
@@ -1265,6 +1383,8 @@ function ghDb(cfg) {
 }
 
 /* ===================== Armazenamento (db do artifact, com reserva no navegador) ===================== */
+// o banco do artifact pode devolver objetos congelados (não editáveis); trabalhamos sempre com uma cópia
+function copiaEditavel(v) { try { return JSON.parse(JSON.stringify(v)); } catch (e) { return v; } }
 const store = {
   db: null, downloads: null, ready: null,
   origem: 'local', erro: null,
@@ -1284,7 +1404,7 @@ const store = {
   lsGet(k) { try { const v = localStorage.getItem('fp:' + k); return v ? JSON.parse(v) : null; } catch (e) { return null; } },
   lsSet(k, v) { try { localStorage.setItem('fp:' + k, JSON.stringify(v)); } catch (e) { } },
   async get(path) {
-    if (this.db) { try { const s = await this.comTempo(this.db.doc(path).get(), 10000, 'ler ' + path); if (s.exists) return s.data(); return null; } catch (e) { console.warn('db get', e); } }
+    if (this.db) { try { const s = await this.comTempo(this.db.doc(path).get(), 10000, 'ler ' + path); if (s.exists) return copiaEditavel(s.data()); return null; } catch (e) { console.warn('db get', e); } }
     return this.lsGet(path);
   },
   comTempo(p, ms, rotulo) { return Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error((rotulo || 'banco') + ' demorou demais')), ms))]); },
@@ -1298,7 +1418,7 @@ const store = {
     if (this.db) { try { await this.db.doc(path).delete(); } catch (e) { console.warn('db del', e); } }
   },
   async list(coll) {
-    if (this.db) { try { const q = await this.comTempo(this.db.collection(coll).get(), 30000, 'listar ' + coll); return q.docs.map(d => ({ id: d.id, ...d.data() })); } catch (e) { console.warn('db list', e); } }
+    if (this.db) { try { const q = await this.comTempo(this.db.collection(coll).get(), 30000, 'listar ' + coll); return q.docs.map(d => ({ id: d.id, ...copiaEditavel(d.data()) })); } catch (e) { console.warn('db list', e); } }
     const out = [];
     try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('fp:' + coll + '/')) out.push({ id: k.slice(('fp:' + coll + '/').length), ...JSON.parse(localStorage.getItem(k)) }); } } catch (e) { }
     return out;
@@ -1838,6 +1958,25 @@ function prazosDe(c) {
     // férias: períodos aquisitivos anuais a partir da admissão
     const tiradas = (c.ferias || []);
     let k = 0, pendente = null;
+    if (c.feriasProg && Array.isArray(c.feriasProg.periodos) && c.feriasProg.periodos.length) {
+      // programação de férias da contabilidade: períodos com dias já gozados e restantes
+      const pers = c.feriasProg.periodos.map(pp => ({ ...pp, iniD: parseData(pp.ini), fimD: parseData(pp.fim), limiteD: parseData(pp.limite) })).filter(pp => pp.iniD && pp.fimD).sort((a, b) => a.iniD - b.iniD);
+      const abertos = pers.filter(pp => (pp.restantes || 0) > 0);
+      let alvo = abertos.find(pp => pp.fimD <= hoje) || abertos.find(pp => pp.fimD > hoje) || null;
+      const vencidos = abertos.filter(pp => pp.fimD <= hoje).length;
+      if (!alvo) {
+        // todos os períodos listados já gozados: o próximo começa no dia seguinte ao último
+        const ult = pers[pers.length - 1];
+        let ini = addDias(ult.fimD, 1);
+        while (addDias(addMeses(ini, 12), -1) < hoje && k < 40) { ini = addMeses(ini, 12); k++; }
+        const fim = addDias(addMeses(ini, 12), -1);
+        alvo = { iniD: ini, fimD: fim, limiteD: addDias(addMeses(fim, 11), 1), restantes: 30, gozados: 0, direito: 30, gerado: true };
+      }
+      const rotulo = `${alvo.iniD.getFullYear()}/${alvo.fimD.getFullYear()}`;
+      const limite = alvo.limiteD || addDias(addMeses(alvo.fimD, 11), 1);
+      pendente = { rotulo, fimAq: alvo.fimD, limite, adquirindo: alvo.fimD > hoje, restantes: alvo.restantes, gozados: alvo.gozados, direito: alvo.direito, vencidos, prog: true };
+      k = 99;
+    }
     while (k < 40) {
       const iniAq = addMeses(adm, 12 * k), fimAq = addDias(addMeses(adm, 12 * (k + 1)), -1), limite = addMeses(adm, 12 * (k + 2));
       if (iniAq > hoje) break;
@@ -1879,9 +2018,11 @@ function renderPrazos() {
     const exp = p.experiencia ? `<span class="chip ${p.experiencia.t}">${esc(p.experiencia.rot)}: ${fmtData(p.experiencia.data)} (${quando(p.experiencia.dias)})</span>` : '<span class="muted">—</span>';
     let fer = '<span class="muted">—</span>';
     if (p.ferias) {
+      const parcial = p.ferias.prog && p.ferias.gozados > 0 ? ` · já gozou ${p.ferias.gozados} dia${p.ferias.gozados > 1 ? 's' : ''}, faltam ${p.ferias.restantes}` : (p.ferias.prog && !p.ferias.adquirindo ? ` · ${p.ferias.restantes} dias` : '');
+      const venc2 = p.ferias.vencidos > 1 ? ` <span class="chip crit">${p.ferias.vencidos} períodos vencidos</span>` : '';
       fer = p.ferias.adquirindo
-        ? `<span class="chip">período ${esc(p.ferias.rotulo)} completa em ${fmtData(p.ferias.fimAq)}</span>`
-        : `<span class="chip ${p.ferias.t}">período ${esc(p.ferias.rotulo)} pendente · conceder até ${fmtData(p.ferias.limite)} (${quando(p.ferias.dias)})</span>`;
+        ? `<span class="chip">período ${esc(p.ferias.rotulo)} completa em ${fmtData(p.ferias.fimAq)}${parcial}</span>`
+        : `<span class="chip ${p.ferias.t}">período ${esc(p.ferias.rotulo)} pendente${parcial} · conceder até ${fmtData(p.ferias.limite)} (${quando(p.ferias.dias)})</span>${venc2}`;
     }
     const af = p.afastamento ? `<span class="chip ${p.afastamento.t}">${p.afastamento.dias != null ? `retorno previsto ${fmtData(p.afastamento.fim)} (${quando(p.afastamento.dias)})` : `em afastamento${p.afastamento.dias === null && p.afastamento.descricao ? ' · ' + esc(p.afastamento.descricao.toLowerCase()) : ''} · início não identificado`}</span>` : '<span class="muted">—</span>';
     return `<tr><td class="name">${esc(c.nome)}</td><td class="mono">${esc(c.admissao || '')}</td><td>${exp}</td><td>${fer}</td><td>${af}</td><td class="row-actions"><button class="btn small" data-ferias="${esc(c.codigo)}">Férias tiradas</button>${p.afastamento && p.afastamento.dias == null ? `<button class="btn small" data-afast="${esc(c.codigo)}">Início do afastamento</button>` : ''}</td></tr>`;
@@ -1894,25 +2035,19 @@ $('#tbl-prazos').addEventListener('click', async (e) => {
   const bf = e.target.closest('[data-ferias]'), ba = e.target.closest('[data-afast]');
   if (bf) {
     const c = cad.find(x => x.codigo === bf.dataset.ferias); if (!c) return;
-    const td = bf.parentElement;
-    if (!td.querySelector('input[type=month]')) {
-      const inp = document.createElement('input'); inp.type = 'month'; inp.ariaLabel = 'Mês das férias';
-      const ok = document.createElement('button'); ok.className = 'btn small primary'; ok.textContent = 'Salvar';
-      ok.addEventListener('click', async () => { if (!inp.value) return; c.ferias = c.ferias || []; if (!c.ferias.includes(inp.value)) c.ferias.push(inp.value); await salvarCadastro(id); renderPrazos(); });
-      td.append(inp, ok); inp.focus();
-    }
+    await lancarFerias(id, c, renderPrazos);
     return;
   }
   if (ba) {
     const c = cad.find(x => x.codigo === ba.dataset.afast); if (!c) return;
-    const td = ba.parentElement;
-    if (!td.querySelector('input[type=date]')) {
-      const inp = document.createElement('input'); inp.type = 'date'; inp.ariaLabel = 'Data de início do afastamento';
-      const dias = document.createElement('input'); dias.type = 'number'; dias.placeholder = 'dias'; dias.style.width = '70px'; dias.value = (c.afastamento && c.afastamento.dias) || '';
-      const ok = document.createElement('button'); ok.className = 'btn small primary'; ok.textContent = 'Salvar';
-      ok.addEventListener('click', async () => { if (!inp.value) return; const [y, m, d] = inp.value.split('-'); c.afastamento = { ...(c.afastamento || {}), inicio: `${d}/${m}/${y}`, dias: Number(dias.value) || (c.afastamento && c.afastamento.dias) || null }; await salvarCadastro(id); renderPrazos(); });
-      td.append(inp, dias, ok); inp.focus();
-    }
+    const r = await perguntar({ titulo: 'Início do afastamento', mensagem: c.nome, campos: [
+      { nome: 'inicio', rotulo: 'Data de início', tipo: 'date', valor: toIso(new Date()) },
+      { nome: 'dias', rotulo: 'Quantidade de dias', tipo: 'number', valor: (c.afastamento && c.afastamento.dias) || '' },
+    ], ok: 'Salvar' });
+    if (!r) return;
+    const d = isoDate(r.inicio); if (!d) { toast('Informe a data de início'); return; }
+    c.afastamento = { ...(c.afastamento || {}), inicio: fmtData(d), dias: Number(r.dias) || (c.afastamento && c.afastamento.dias) || null };
+    renderPrazos(); await salvarCadastro(id);
   }
 });
 async function usarEmpresaAtual() {
@@ -2343,8 +2478,8 @@ function renderCadastro() {
   const sorted = [...cad].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
   tb.innerHTML = sorted.map(c => {
     const i = cad.indexOf(c);
-    return `<tr class="${c.ativo === false ? 'missing' : ''}"><td class="code">${esc(c.codigo)}</td><td class="name">${esc(c.nome)}</td><td><input class="cell" style="width:90px" id="bon-${i}" data-bon="${i}" value="${c.bonificacao ? esc(fmtValor(c.bonificacao)) : ''}" placeholder="—" aria-label="Prêmio fixo de ${esc(c.nome)}"></td><td><input class="cell" style="width:90px" id="ajc-${i}" data-ajc="${i}" value="${c.ajudaCusto ? esc(fmtValor(c.ajudaCusto)) : ''}" placeholder="—" aria-label="Ajuda de custo de ${esc(c.nome)}"></td><td><input class="cell" style="width:90px" id="vtr-${i}" data-vtr="${i}" value="${valeTransporteDe(id, c) ? esc(fmtValor(valeTransporteDe(id, c))) : ''}" placeholder="—" aria-label="Desconto de vale transporte de ${esc(c.nome)}"></td><td>${c.ativo === false ? '<span class="chip">desativado</span>' : '<span class="chip ok">ativo</span>'}</td><td class="row-actions"><button class="btn small" data-tog="${i}">${c.ativo === false ? 'Reativar' : 'Desativar'}</button><button class="btn small" data-hist="${esc(c.codigo)}" data-nome="${esc(c.nome)}">Histórico</button><button class="btn small danger" data-del="${i}">Excluir</button></td></tr>`;
-  }).join('') || '<tr><td colspan="7" class="muted">Nenhum colaborador cadastrado ainda.</td></tr>';
+    return `<tr class="${c.ativo === false ? 'missing' : ''}"><td class="code">${esc(c.codigo)}</td><td class="name">${esc(c.nome)}</td><td><input class="cell" type="date" style="width:140px;font-family:var(--font);text-align:left" id="adm-${i}" data-adm="${i}" value="${(() => { const d = parseData(c.admissao); return d ? toIso(d) : ''; })()}" aria-label="Admissão de ${esc(c.nome)}"></td><td><input class="cell" style="width:90px" id="bon-${i}" data-bon="${i}" value="${c.bonificacao ? esc(fmtValor(c.bonificacao)) : ''}" placeholder="—" aria-label="Prêmio fixo de ${esc(c.nome)}"></td><td><input class="cell" style="width:90px" id="ajc-${i}" data-ajc="${i}" value="${c.ajudaCusto ? esc(fmtValor(c.ajudaCusto)) : ''}" placeholder="—" aria-label="Ajuda de custo de ${esc(c.nome)}"></td><td><input class="cell" style="width:90px" id="vtr-${i}" data-vtr="${i}" value="${valeTransporteDe(id, c) ? esc(fmtValor(valeTransporteDe(id, c))) : ''}" placeholder="—" aria-label="Desconto de vale transporte de ${esc(c.nome)}"></td><td>${c.ativo === false ? '<span class="chip">desativado</span>' : '<span class="chip ok">ativo</span>'}</td><td class="row-actions"><button class="btn small" data-tog="${i}">${c.ativo === false ? 'Reativar' : 'Desativar'}</button><button class="btn small" data-ficha="${esc(c.codigo)}">Ficha</button><button class="btn small" data-hist="${esc(c.codigo)}" data-nome="${esc(c.nome)}">Histórico</button><button class="btn small danger" data-del="${i}">Excluir</button></td></tr>`;
+  }).join('') || '<tr><td colspan="8" class="muted">Nenhum colaborador cadastrado ainda.</td></tr>';
   const e = { ...EMPRESAS[id], ...(state.config[id] || {}) };
   $('#cfg-codigo').value = e.codigo; $('#cfg-razao').value = e.razao; $('#cfg-cnpj').value = e.cnpj; $('#cfg-premio').value = e.premioAssid; $('#cfg-tol').value = e.toleranciaMin;
 }
@@ -2508,6 +2643,1005 @@ async function gerarPlanilha() {
 }
 
 /* ===================== Eventos ===================== */
+
+/* ===================== Documentos: atestados, declarações, férias (leitura pela IA) ===================== */
+const docs = { sample: null, sampleTentado: false, cards: [], salvos: [] };
+// capítulos do CID-10 para conferir a classificação que a IA fez
+const CID_CAPITULOS = [
+  ['A00', 'B99', 'Doenças infecciosas e parasitárias', 'infecção'], ['C00', 'D48', 'Neoplasias (tumores)', 'oncológico'], ['D50', 'D89', 'Doenças do sangue e imunidade', 'hematológico'],
+  ['E00', 'E90', 'Doenças endócrinas, nutricionais e metabólicas', 'endócrino'], ['F00', 'F99', 'Transtornos mentais e comportamentais', 'saúde mental'], ['G00', 'G99', 'Doenças do sistema nervoso', 'neurológico'],
+  ['H00', 'H59', 'Doenças do olho', 'oftalmológico'], ['H60', 'H95', 'Doenças do ouvido', 'otorrino'], ['I00', 'I99', 'Doenças do aparelho circulatório', 'cardiovascular'], ['J00', 'J99', 'Doenças do aparelho respiratório', 'respiratório'],
+  ['K00', 'K14', 'Doenças da boca, dentes e maxilares', 'odontológico'], ['K20', 'K93', 'Doenças do aparelho digestivo', 'digestivo'], ['L00', 'L99', 'Doenças da pele', 'dermatológico'], ['M00', 'M99', 'Doenças osteomusculares (ossos, músculos, coluna)', 'ortopédico'],
+  ['N00', 'N99', 'Doenças do aparelho geniturinário', 'urinário/ginecológico'], ['O00', 'O99', 'Gravidez, parto e puerpério', 'gestação'], ['P00', 'P96', 'Afecções do período perinatal', 'perinatal'], ['Q00', 'Q99', 'Malformações congênitas', 'congênito'],
+  ['R00', 'R99', 'Sintomas e sinais (sem diagnóstico fechado)', 'sintomas'], ['S00', 'T98', 'Lesões, traumatismos e envenenamentos', 'trauma'], ['V01', 'Y98', 'Causas externas', 'causa externa'], ['Z00', 'Z99', 'Fatores que influenciam o contato com serviços de saúde (consulta, exame, acompanhante)', 'administrativo'],
+];
+const CID_COMUNS = { A08: 'Infecção intestinal viral', A09: 'Diarreia e gastroenterite infecciosa', B34: 'Infecção viral não especificada', B349: 'Infecção viral não especificada', J00: 'Resfriado comum', J01: 'Sinusite aguda', J02: 'Faringite aguda', J03: 'Amigdalite aguda', J04: 'Laringite aguda', J06: 'Infecção aguda das vias aéreas superiores', J11: 'Influenza (gripe)', J18: 'Pneumonia', J20: 'Bronquite aguda', J45: 'Asma', K02: 'Cárie dentária', K04: 'Doença da polpa e tecidos periapicais', K05: 'Gengivite e doença periodontal', K08: 'Outros transtornos dos dentes (ex.: extração)', K29: 'Gastrite', K30: 'Dispepsia', K35: 'Apendicite aguda', M54: 'Dorsalgia (dor nas costas)', M545: 'Dor lombar baixa', M79: 'Dor em partes moles', N30: 'Cistite', N39: 'Infecção do trato urinário', R10: 'Dor abdominal', R11: 'Náusea e vômito', R50: 'Febre', R51: 'Cefaleia (dor de cabeça)', H10: 'Conjuntivite', L03: 'Celulite (infecção da pele)', F41: 'Transtornos ansiosos', F32: 'Episódio depressivo', G43: 'Enxaqueca', O20: 'Hemorragia no início da gravidez', O26: 'Assistência materna por complicações da gravidez', Z00: 'Exame geral', Z01: 'Exame especial', Z34: 'Supervisão de gravidez normal', Z39: 'Cuidado pós-parto', Z76: 'Contato com serviços de saúde (ex.: Z76.3 pessoa sã acompanhando doente)', Z763: 'Pessoa em boa saúde acompanhando pessoa doente' };
+function cidInfo(cod) {
+  const c = String(cod || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!/^[A-Z]\d{2}/.test(c)) return null;
+  const base = c.slice(0, 3);
+  const cap = CID_CAPITULOS.find(([a, b]) => base >= a && base <= b);
+  const desc = CID_COMUNS[c] || CID_COMUNS[base] || '';
+  return { codigo: c.length > 3 ? c.slice(0, 3) + '.' + c.slice(3) : c, capitulo: cap ? cap[2] : 'capítulo não identificado', categoria: cap ? cap[3] : '', descricao: desc };
+}
+function docId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function dataIsoBr(iso) { if (!iso) return ''; const m = String(iso).match(/(\d{4})-(\d{2})-(\d{2})/); return m ? `${m[3]}/${m[2]}/${m[1]}` : String(iso); }
+function isoDate(iso) { const m = String(iso || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+function toIso(d) { return d ? `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` : ''; }
+function somaDias(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+function proximoDiaUtil(d) { let x = somaDias(d, 1); while (x.getDay() === 0 || x.getDay() === 6) x = somaDias(x, 1); return x; }
+const DIAS_SEMANA = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+function dataLonga(d) { return d ? `${DIAS_SEMANA[d.getDay()]}, ${fmtData(d)}` : ''; }
+
+async function sampleDocs() {
+  if (docs.sample || docs.sampleTentado) return docs.sample;
+  docs.sampleTentado = true;
+  try { if (window.claude && window.claude.use) docs.sample = await window.claude.use('sample'); } catch (e) { docs.sample = null; }
+  return docs.sample;
+}
+// reduz a imagem (foto de celular) para mandar à IA e guardar uma miniatura
+function redimensionar(blob, max, qualidade) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(blob); const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); const r = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement('canvas'); c.width = Math.round(img.width * r); c.height = Math.round(img.height * r); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); c.toBlob(b => b ? res(b) : rej(new Error('não consegui converter a imagem')), 'image/jpeg', qualidade); };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('não consegui abrir a imagem')); };
+    img.src = url;
+  });
+}
+function blobParaDataUrl(b) { return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(b); }); }
+async function paginasDoPdf(file, maxPaginas) {
+  const buf = await file.arrayBuffer();
+  const doc = await abrirPdf(buf);
+  const imagens = [], textos = [];
+  for (let p = 1; p <= Math.min(doc.numPages, maxPaginas); p++) {
+    const page = await doc.getPage(p);
+    const tc = await page.getTextContent(); textos.push(tc.items.map(i => i.str).join(' '));
+    const vp0 = page.getViewport({ scale: 1 }); const scale = Math.min(2.5, 1400 / vp0.width);
+    const vp = page.getViewport({ scale }); const c = document.createElement('canvas'); c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+    await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+    imagens.push(await new Promise(r => c.toBlob(r, 'image/jpeg', 0.85)));
+  }
+  return { imagens, texto: textos.join('\n').trim(), paginas: doc.numPages };
+}
+function listaColaboradoresPrompt() {
+  return Object.keys(EMPRESAS).map(id => `${EMPRESAS[id].rotulo}: ` + (state.cadastro[id] || []).filter(c => c.ativo !== false).map(c => c.nome).join('; ')).join('\n');
+}
+function promptDocumento(textoPdf, nArq, confOcr) {
+  const hoje = new Date();
+  return `Você é o assistente do RH das empresas Oslo Closet e Diverse Estilos (Descalvado-SP, Brasil). Analise o documento anexado (foto, scan ou PDF de ${nArq} página(s)) e extraia TUDO o que ele diz. Hoje é ${fmtData(hoje)}.
+
+Colaboradores cadastrados (use exatamente um destes nomes em "pessoa.nomeCadastro" quando o nome do documento corresponder a algum deles, mesmo com abreviação, acento diferente ou só primeiro nome + sobrenome; senão deixe null):
+${listaColaboradoresPrompt()}
+
+Regras do RH que você deve aplicar em "oQueFazer":
+- Só ATESTADO MÉDICO ou ODONTOLÓGICO com dias (ou horas) de afastamento abona falta: lançar no controle de ponto (STELANTO) como atestado nos dias cobertos. Se a pessoa trabalhou parte do dia, abona só as horas que faltaram dentro do período do atestado.
+- Os dias do atestado contam a partir da data do atestado (ou da data de início que ele indicar), inclusive. Ex.: atestado de 2 dias emitido em 01/10 cobre 01/10 e 02/10.
+- DECLARAÇÃO de comparecimento, de acompanhamento (acompanhante de filho/familiar), de consulta ou de exame NÃO abona o dia: só anexar na aba Documentos do STELANTO. Se cobrir apenas algumas horas, diga quais.
+- Aviso/recibo de FÉRIAS: informar período de gozo, dias, abono pecuniário se houver e a data de retorno ao trabalho.
+- Atestado com 15 dias ou mais (ou somando mais de 15 dias com o mesmo motivo em 60 dias) → alertar que a partir do 16º dia é afastamento pelo INSS.
+- Se o documento estiver ilegível, incompleto, sem assinatura/CRM/CRO, sem data ou com rasura, diga em "duvidas".
+
+${textoPdf ? (confOcr != null ? `Você NÃO está vendo a imagem: abaixo está o texto obtido por OCR da foto (confiança ${Math.round(confOcr)}%). O OCR erra letras, troca números parecidos (1/7, 0/8, 3/8), perde acentos e pode embaralhar a ordem; interprete com cuidado, corrija erros óbvios de OCR em nomes e datas usando a lista de colaboradores, e aponte em "duvidas" tudo o que ficou incerto (ex.: dia ou CID que pode estar mal lido). Partes manuscritas quase nunca saem no OCR: se faltar informação essencial, diga.\n` : 'Texto extraído do PDF (pode ajudar na leitura):\n') + '<<<' + textoPdf.slice(0, 6000) + '>>>\n\n' : ''}Responda SOMENTE com um objeto JSON neste formato (use null quando não houver a informação; datas no formato AAAA-MM-DD; horas HH:MM):
+{
+ "tipo": "atestado" | "declaracao" | "ferias" | "afastamento" | "outro",
+ "subtipo": "texto curto, ex.: atestado médico, atestado odontológico, declaração de comparecimento, declaração de acompanhante, aviso de férias, exame admissional, receita, laudo",
+ "legivel": true | false,
+ "pessoa": { "nomeNoDocumento": "nome como está escrito", "nomeCadastro": "nome exato da lista acima ou null", "confianca": "alta" | "media" | "baixa", "paciente": "se o paciente for outra pessoa (filho, familiar), nome e relação; senão null" },
+ "empresa": "oslo" | "diverse" | null,
+ "emissao": { "data": "AAAA-MM-DD", "hora": "HH:MM ou null", "cidade": "cidade ou null" },
+ "periodo": { "inicio": "AAAA-MM-DD", "fim": "AAAA-MM-DD", "dias": número ou null, "parcial": true | false, "horaInicio": "HH:MM ou null", "horaFim": "HH:MM ou null", "comoEstaEscrito": "transcreva a frase do documento sobre o período, ex.: 'afastamento por 2 (dois) dias a partir desta data'" },
+ "retornoAoTrabalho": "AAAA-MM-DD do primeiro dia em que a pessoa deve voltar (dia seguinte ao fim do período; se cair em sábado/domingo, a segunda-feira) ou null",
+ "cid": [ { "codigo": "ex.: J11.1", "descricao": "o que esse CID significa", "categoria": "ex.: infecção respiratória, odontológico, ortopédico, acompanhante, gestação" } ],
+ "motivo": "do que se trata, em palavras simples (ex.: infecção de garganta; extração de dente; acompanhou o filho em consulta). Se não houver CID, deduza pelo texto e diga que não há CID",
+ "profissional": { "nome": "nome do médico/dentista", "registro": "CRM/CRO com número e UF", "especialidade": "se constar", "local": "clínica/hospital/UBS" },
+ "abona": true | false,
+ "oQueFazer": "instrução direta para o RH, com as datas exatas (ex.: 'Lançar atestado no STELANTO em 01/10/2026 e 02/10/2026 (quarta e quinta). Volta ao trabalho em 03/10/2026, sexta.')",
+ "resumo": "2 a 4 frases em português resumindo exatamente o que é o documento: quem, o quê, quando, por quanto tempo, motivo/CID e profissional",
+ "duvidas": [ "pontos que o RH deve conferir (rasura, data ilegível, sem CRM, nome diferente do cadastro, etc.)" ],
+ "textoLido": "transcrição resumida do documento (até 600 caracteres)"
+}`;
+}
+function vincularPessoa(nomeCad, nomeDoc) {
+  const todos = [];
+  for (const id of Object.keys(EMPRESAS)) for (const c of (state.cadastro[id] || [])) todos.push({ empresaId: id, c });
+  const n1 = norm(nomeCad || ''), n2 = norm(nomeDoc || '');
+  let best = null, score = 0;
+  for (const t of todos) {
+    const sc = Math.max(n1 && norm(t.c.nome) === n1 ? 1 : 0, n1 ? similar(t.c.nome, n1) : 0, n2 ? similar(t.c.nome, n2) : 0);
+    if (sc > score) { score = sc; best = t; }
+  }
+  return score >= 0.6 ? { ...best, score } : null;
+}
+function completarAnalise(a) {
+  // datas: se a IA não fechou o fim/retorno, calcula pelo início + dias
+  a.periodo = a.periodo || {}; a.emissao = a.emissao || {}; a.pessoa = a.pessoa || {}; a.profissional = a.profissional || {};
+  a.cid = Array.isArray(a.cid) ? a.cid.filter(c => c && c.codigo) : [];
+  const ini = isoDate(a.periodo.inicio) || isoDate(a.emissao.data);
+  if (ini && !a.periodo.inicio) a.periodo.inicio = toIso(ini);
+  if (ini && a.periodo.dias && !a.periodo.fim) a.periodo.fim = toIso(somaDias(ini, Math.max(1, Math.round(a.periodo.dias)) - 1));
+  const fim = isoDate(a.periodo.fim);
+  if (ini && fim && !a.periodo.dias) a.periodo.dias = Math.round((fim - ini) / 86400000) + 1;
+  if (fim && !a.retornoAoTrabalho) a.retornoAoTrabalho = toIso(proximoDiaUtil(fim));
+  // CID: confere capítulo
+  a.cid = a.cid.map(c => { const info = cidInfo(c.codigo); return info ? { ...c, codigo: info.codigo, capitulo: info.capitulo, categoriaTabela: info.categoria, descricaoTabela: info.descricao } : c; });
+  // pessoa x cadastro
+  const v = vincularPessoa(a.pessoa.nomeCadastro, a.pessoa.nomeNoDocumento);
+  if (v) { a.pessoa.codigo = v.c.codigo; a.pessoa.nome = v.c.nome; a.empresa = v.empresaId; a.pessoa.vinculo = v.score >= 0.99 ? 'exato' : 'parecido'; }
+  else { a.pessoa.nome = a.pessoa.nomeCadastro || a.pessoa.nomeNoDocumento || ''; a.pessoa.codigo = ''; a.pessoa.vinculo = 'nao-encontrado'; }
+  if (a.tipo === 'atestado' && a.periodo.dias >= 15) (a.duvidas = a.duvidas || []).push(`Atestado de ${a.periodo.dias} dias: a partir do 16º dia o afastamento é pelo INSS (empresa paga só os 15 primeiros).`);
+  return a;
+}
+function carregarScript(src) { return new Promise((res, rej) => { const sc = document.createElement('script'); sc.src = src; sc.onload = res; sc.onerror = () => rej(new Error('falha ao carregar ' + src)); document.head.appendChild(sc); }); }
+// OCR na própria página (tesseract.js, português) — usado quando o visualizador não deixa mandar a foto para a IA
+async function ocrWorker(onProgress) {
+  if (docs.ocr) return docs.ocr;
+  if (!window.Tesseract) await carregarScript('vendor/tesseract.min.js');
+  const base = new URL('vendor/', location.href).href;
+  // o arquivo de idioma vai com extensão .wasm só porque o servidor do artifact não entrega .traineddata
+  const resp = await fetch(base + 'por.traineddata.wasm'); if (!resp.ok) throw new Error('não consegui baixar o idioma do OCR');
+  const dados = new Uint8Array(await resp.arrayBuffer());
+  docs.ocr = await window.Tesseract.createWorker([{ code: 'por', data: dados }], 1, { workerPath: base + 'tesseract.worker.min.js', corePath: base, langPath: base, gzip: false, workerBlobURL: false, cacheMethod: 'none', logger: (m) => { if (onProgress) onProgress(m); } });
+  return docs.ocr;
+}
+async function ocrImagens(imagens, card) {
+  const textos = []; let conf = 0;
+  card.etapa = 'Preparando o leitor de texto (OCR)…';
+  const rerender = () => (card.modo === 'aso' ? renderAsoCards() : renderDocCards());
+  const w = await ocrWorker((m) => { if (m && m.status === 'recognizing text' && card.status === 'analisando') { card.etapa = `Lendo o texto da foto (OCR)… ${Math.round((m.progress || 0) * 100)}%`; rerender(); } });
+  for (const img of imagens) {
+    const grande = await redimensionar(img, 2400, 0.92);
+    const { data } = await w.recognize(grande);
+    textos.push(data.text || ''); conf = Math.max(conf, data.confidence || 0);
+  }
+  return { texto: textos.join('\n').trim(), confianca: conf };
+}
+async function analisarDocumento(file, modo) {
+  modo = modo || 'documento';
+  const card = { id: docId(), arquivo: file.name, status: 'analisando', analise: null, thumb: '', erro: '', modo };
+  const render = modo === 'aso' ? renderAsoCards : renderDocCards;
+  const montarPrompt = modo === 'aso' ? promptAso : promptDocumento;
+  const lista = modo === 'aso' ? exames.cards : docs.cards;
+  lista.unshift(card); render();
+  try {
+    const sample = await sampleDocs();
+    if (!sample) throw { code: 'sem_claude', message: 'A leitura automática só funciona na versão online do aplicativo (aberta pelo Claude). Nesta cópia não há IA disponível.' };
+    let imagens = [], texto = '', nPag = 1;
+    if (/pdf$/i.test(file.name) || file.type === 'application/pdf') { const r = await paginasDoPdf(file, 3); imagens = r.imagens; texto = r.texto; nPag = r.paginas; }
+    else imagens = [await redimensionar(file, 1600, 0.85)];
+    card.thumb = await blobParaDataUrl(await redimensionar(imagens[0], 360, 0.7)); render();
+    let limites = null, limErr = null; try { limites = await sample.limits(); } catch (e) { limErr = e; }
+    card.diag = 'limites: ' + (limites ? JSON.stringify({ imagens: !!limites.images, max: limites.images && limites.images.maxCount }) : 'indisponível (' + ((limErr && limErr.code) || 'erro') + ')') + ' · ' + navigator.userAgent.replace(/^Mozilla\/5\.0 /, '').slice(0, 90);
+    const opts = { modelTier: 'default' };
+    // se limits() não existe neste visualizador, tenta mandar as imagens mesmo assim
+    const podeImagem = !limites || !!limites.images;
+    if (podeImagem) opts.images = imagens.slice(0, (limites && limites.images && limites.images.maxCount) || 3);
+    let bruto, viaOcr = false, ocr = null;
+    const semImagem = async () => {
+      // plano B: OCR na página e manda só o texto
+      delete opts.images; viaOcr = true;
+      if (!texto || texto.length < 40) { ocr = await ocrImagens(imagens, card); texto = ocr.texto; }
+      if (!texto || texto.replace(/\s+/g, '').length < 20) throw { code: 'ocr_vazio', message: 'Não consegui ler texto nesta foto (OCR). Tente uma foto mais nítida, de frente, com boa luz e o documento inteiro na tela — ou um PDF.' };
+      card.etapa = 'A IA está analisando o texto…'; render();
+      return sample.json(montarPrompt(texto, nPag, ocr ? ocr.confianca : null), opts);
+    };
+    if (!podeImagem) bruto = await semImagem();
+    else {
+      card.etapa = 'A IA está analisando a foto…'; render();
+      try { bruto = await sample.json(montarPrompt(texto, nPag, null), opts); }
+      catch (e) { if (e && e.code === 'images_unavailable') bruto = await semImagem(); else throw e; }
+    }
+    if (bruto && viaOcr) { bruto.viaOcr = true; bruto.ocrConfianca = ocr ? Math.round(ocr.confianca) : null; bruto.textoOcr = texto; }
+    card.analise = modo === 'aso' ? completarAso(bruto || {}) : completarAnalise(bruto || {}); card.status = 'pronto';
+  } catch (e) {
+    console.error('documento', e);
+    const code = e && e.code;
+    card.status = 'erro';
+    card.erro = code === 'not_granted' ? 'Você não autorizou o aplicativo a usar o Claude. Recarregue a página (F5) e aceite a autorização quando ela aparecer.'
+      : code === 'rate_limited' ? 'Muitas leituras seguidas ou limite de uso do Claude atingido. Espere um pouco e tente de novo.'
+      : code === 'image_rejected' ? 'A IA não aceitou esta imagem (tamanho ou formato). Tente uma foto menor, em JPG ou PNG.'
+      : code === 'images_unavailable' ? 'Este visualizador não deixa mandar a foto para a IA e o leitor de texto (OCR) também não funcionou aqui. Abra o aplicativo no Chrome (atalho "FECHAMENTO - RH") e tente de novo. Diagnóstico: ' + (card.diag || '')
+      : code === 'invalid_json' ? 'A IA respondeu fora do formato esperado. Clique em "Tentar de novo".'
+      : code === 'refused' ? 'A IA se recusou a analisar este documento. Confira se é mesmo um documento do colaborador.'
+      : ((e && e.message) ? String(e.message) : String(e)) + (card.diag ? ' · ' + card.diag : '');
+  }
+  render();
+}
+async function processarDocumentos(files, modo) {
+  const lista = [...files].filter(f => /\.(pdf|jpe?g|png|webp|gif|heic)$/i.test(f.name) || /^image\//.test(f.type) || f.type === 'application/pdf');
+  if (!lista.length) { toast('Mande uma foto (JPG/PNG) ou um PDF'); return; }
+  if (lista.some(f => /heic$/i.test(f.name))) toast('Fotos HEIC (iPhone) não abrem no navegador: converta para JPG antes');
+  const prog = $(modo === 'aso' ? '#progress-ex' : '#progress-doc');
+  prog.classList.add('on');
+  for (const f of lista) await analisarDocumento(f, modo);
+  prog.classList.remove('on');
+}
+const TIPO_ROTULO = { atestado: 'Atestado', declaracao: 'Declaração', ferias: 'Férias', afastamento: 'Afastamento (INSS)', outro: 'Outro documento' };
+function opcoesColab(sel) {
+  let html = '<option value="">— não identificado —</option>';
+  for (const id of Object.keys(EMPRESAS)) { html += `<optgroup label="${esc(EMPRESAS[id].rotulo)}">` + (state.cadastro[id] || []).filter(c => c.ativo !== false).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR')).map(c => `<option value="${id}|${esc(c.codigo)}" ${sel === id + '|' + c.codigo ? 'selected' : ''}>${esc(c.nome)}</option>`).join('') + '</optgroup>'; }
+  return html;
+}
+function renderDocCards() {
+  const box = $('#doc-cards');
+  box.innerHTML = docs.cards.map(card => {
+    if (card.status === 'analisando') return `<div class="doc-card analisando" data-card="${card.id}"><div><div class="cabeca"><span class="tipo">Lendo ${esc(card.arquivo)}…</span><span class="chip info">${esc(card.etapa || 'lendo… (pode levar até 1 minuto)')}</span></div>${card.thumb ? `<img class="thumb" src="${card.thumb}" alt="">` : ''}</div></div>`;
+    if (card.status === 'erro') return `<div class="doc-card analisando" data-card="${card.id}"><div><div class="cabeca"><span class="tipo">${esc(card.arquivo)}</span><span class="chip crit">não foi possível ler</span></div><div class="notice crit">${esc(card.erro)}</div><div class="acoes"><button class="btn small" data-doc-retry="${card.id}">Tentar de novo</button><button class="btn small" data-doc-descartar="${card.id}">Descartar</button></div></div></div>`;
+    const a = card.analise, per = a.periodo || {}, pes = a.pessoa || {}, pro = a.profissional || {};
+    const chips = [];
+    chips.push(`<span class="chip ${a.tipo === 'atestado' ? 'ok' : a.tipo === 'declaracao' ? 'warn' : 'info'}">${esc(a.subtipo || TIPO_ROTULO[a.tipo] || a.tipo)}</span>`);
+    chips.push(a.abona ? '<span class="chip ok">abona falta</span>' : '<span class="chip warn">não abona</span>');
+    if (a.legivel === false) chips.push('<span class="chip crit">ilegível / incompleto</span>');
+    if (pes.vinculo === 'parecido') chips.push('<span class="chip info">nome parecido — confira</span>');
+    if (pes.vinculo === 'nao-encontrado') chips.push('<span class="chip crit">não está no cadastro</span>');
+    if (pes.paciente) chips.push(`<span class="chip info">paciente: ${esc(pes.paciente)}</span>`);
+    if (a.viaOcr) chips.push(`<span class="chip warn" title="O visualizador não deixou mandar a foto para a IA; o texto foi lido por OCR na página e só o texto foi analisado">lido por OCR${a.ocrConfianca != null ? ' · ' + a.ocrConfianca + '%' : ''}</span>`);
+    const dias = per.dias ? `${per.dias} dia${per.dias > 1 ? 's' : ''}` : (per.parcial ? 'parcial' : '—');
+    const periodoTxt = per.inicio ? (per.fim && per.fim !== per.inicio ? `${dataIsoBr(per.inicio)} a ${dataIsoBr(per.fim)}` : dataIsoBr(per.inicio)) + (per.parcial && per.horaInicio ? ` · ${per.horaInicio}${per.horaFim ? ' às ' + per.horaFim : ''}` : '') : '—';
+    const cids = a.cid.length ? a.cid.map(c => { const odontoIa = /ODONT|DENT/.test(norm(c.categoria || '') + ' ' + norm(c.descricao || '')), odontoCid = c.categoriaTabela === 'odontológico'; const bate = c.capitulo && c.categoria ? !(odontoIa !== odontoCid) : null; return `<div><strong>CID ${esc(c.codigo)}</strong> — ${esc(c.descricaoTabela || c.descricao || '')}${c.descricaoTabela && c.descricao && norm(c.descricao) !== norm(c.descricaoTabela) ? ` <span class="muted">(no documento: ${esc(c.descricao)})</span>` : ''}<br><span class="muted">Capítulo CID-10: ${esc(c.capitulo || '?')} · categoria: ${esc(c.categoria || c.categoriaTabela || '—')}${bate === false ? ' · <span class="chip warn">o CID não é odontológico (ou vice-versa): confira o código</span>' : bate === true ? '' : ''}</span></div>`; }).join('') : '<div class="muted">Sem CID no documento' + (a.motivo ? ` — motivo pelo texto: ${esc(a.motivo)}` : '') + '</div>';
+    const duvidas = (a.duvidas || []).filter(Boolean);
+    return `<div class="doc-card" data-card="${card.id}">
+      <div>
+        <div class="cabeca"><span class="tipo">${esc(pes.nome || pes.nomeNoDocumento || 'Colaborador não identificado')}</span>${chips.join('')}<span class="muted" style="margin-left:auto">${esc(card.arquivo)}</span></div>
+        <div class="grade">
+          <div><span class="k">Colaborador (corrija se precisar)</span><select class="cell" data-doc-pessoa="${card.id}">${opcoesColab(a.empresa && pes.codigo ? a.empresa + '|' + pes.codigo : '')}</select></div>
+          <div><span class="k">Nome no documento</span>${esc(pes.nomeNoDocumento || '—')}</div>
+          <div><span class="k">Emitido em</span>${esc(dataIsoBr(a.emissao.data) || '—')}${a.emissao.hora ? ' ' + esc(a.emissao.hora) : ''}${a.emissao.cidade ? ' · ' + esc(a.emissao.cidade) : ''}</div>
+          <div><span class="k">Período coberto</span>${esc(periodoTxt)}</div>
+          <div><span class="k">Dias</span>${esc(dias)}</div>
+          <div><span class="k">Volta ao trabalho</span>${a.retornoAoTrabalho ? esc(dataLonga(isoDate(a.retornoAoTrabalho))) : '—'}</div>
+          <div><span class="k">Motivo</span>${esc(a.motivo || '—')}</div>
+          <div><span class="k">Profissional</span>${esc([pro.nome, pro.registro, pro.especialidade].filter(Boolean).join(' · ') || '—')}${pro.local ? `<br><span class="muted">${esc(pro.local)}</span>` : ''}</div>
+        </div>
+        <div><span class="k muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.05em">CID</span>${cids}</div>
+        <div class="resumo"><strong>Resumo:</strong> ${esc(a.resumo || '')}</div>
+        <div class="fazer"><strong>O que fazer:</strong> ${esc(a.oQueFazer || '')}</div>
+        ${per.comoEstaEscrito ? `<div class="muted" style="font-size:12.5px">Como está escrito: “${esc(per.comoEstaEscrito)}”</div>` : ''}
+        ${a.viaOcr && a.textoOcr ? `<details style="margin-top:6px"><summary class="muted" style="cursor:pointer;font-size:12.5px">Ver o texto que o OCR leu da foto</summary><pre style="white-space:pre-wrap;font-size:12px;background:var(--surface-2);padding:8px;border-radius:6px">${esc(a.textoOcr.slice(0, 3000))}</pre></details>` : ''}
+        ${duvidas.length ? `<div class="notice warn" style="margin-top:8px"><strong>Confira:</strong><ul>${duvidas.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
+        <div class="acoes"><button class="btn primary small" data-doc-salvar="${card.id}">Salvar no histórico</button><button class="btn small" data-doc-copiar="${card.id}">Copiar resumo</button><button class="btn small" data-doc-retry="${card.id}">Ler de novo</button><button class="btn small danger" data-doc-descartar="${card.id}">Descartar</button></div>
+      </div>
+      ${card.thumb ? `<img class="thumb" src="${card.thumb}" alt="Documento" data-doc-zoom>` : '<div></div>'}
+    </div>`;
+  }).join('');
+}
+function textoDoc(a) {
+  const per = a.periodo || {}, pes = a.pessoa || {};
+  return [`${a.subtipo || TIPO_ROTULO[a.tipo] || a.tipo} — ${pes.nome || pes.nomeNoDocumento || ''}${a.empresa ? ' (' + EMPRESAS[a.empresa].rotulo + ')' : ''}`,
+    `Emitido em ${dataIsoBr(a.emissao.data) || '?'}. Período: ${per.inicio ? dataIsoBr(per.inicio) + (per.fim && per.fim !== per.inicio ? ' a ' + dataIsoBr(per.fim) : '') : '—'}${per.dias ? ` (${per.dias} dia${per.dias > 1 ? 's' : ''})` : ''}${per.parcial && per.horaInicio ? ` · ${per.horaInicio}${per.horaFim ? ' às ' + per.horaFim : ''}` : ''}. Volta: ${a.retornoAoTrabalho ? dataLonga(isoDate(a.retornoAoTrabalho)) : '—'}.`,
+    a.cid.length ? 'CID: ' + a.cid.map(c => `${c.codigo} (${c.descricaoTabela || c.descricao || ''})`).join(', ') : 'Sem CID.' + (a.motivo ? ' Motivo: ' + a.motivo : ''),
+    `Resumo: ${a.resumo || ''}`, `O que fazer: ${a.oQueFazer || ''}`, (a.duvidas || []).length ? 'Conferir: ' + a.duvidas.join('; ') : ''].filter(Boolean).join('\n');
+}
+async function salvarDoc(card) {
+  const a = card.analise;
+  const reg = { id: card.id, arquivo: card.arquivo, salvoEm: new Date().toISOString(), tipo: a.tipo, subtipo: a.subtipo, empresa: a.empresa || null, codigo: a.pessoa.codigo || '', nome: a.pessoa.nome || a.pessoa.nomeNoDocumento || '', emissao: a.emissao.data || null, inicio: a.periodo.inicio || null, fim: a.periodo.fim || null, dias: a.periodo.dias || null, parcial: !!a.periodo.parcial, horaInicio: a.periodo.horaInicio || null, horaFim: a.periodo.horaFim || null, retorno: a.retornoAoTrabalho || null, cid: a.cid.map(c => ({ codigo: c.codigo, descricao: c.descricaoTabela || c.descricao || '' })), motivo: a.motivo || '', abona: !!a.abona, resumo: a.resumo || '', oQueFazer: a.oQueFazer || '', duvidas: a.duvidas || [], profissional: a.profissional || {}, thumb: card.thumb || '' };
+  const ok = await store.set('documentos/' + card.id, reg);
+  toast(ok ? 'Documento salvo no histórico' : 'Documento salvo só neste navegador');
+  docs.cards = docs.cards.filter(c => c !== card); renderDocCards(); renderDocsSalvos();
+}
+async function renderDocsSalvos() {
+  const emp = $('#sel-empresa-doc').value, tipo = $('#sel-tipo-doc').value, busca = norm($('#inp-busca-doc').value);
+  docs.salvos = await store.list('documentos');
+  docs.salvos.sort((a, b) => String(b.inicio || b.emissao || '').localeCompare(String(a.inicio || a.emissao || '')) || String(b.salvoEm || '').localeCompare(String(a.salvoEm || '')));
+  const itens = docs.salvos.filter(d => (!emp || d.empresa === emp) && (!tipo || d.tipo === tipo) && (!busca || norm(d.nome).includes(busca)));
+  $('#doc-lista').innerHTML = itens.length ? itens.map(d => `<div class="item"><div style="flex:1"><div class="t">${esc(d.nome || '—')} <span class="chip ${d.tipo === 'atestado' ? 'ok' : d.tipo === 'declaracao' ? 'warn' : 'info'}">${esc(d.subtipo || TIPO_ROTULO[d.tipo] || d.tipo)}</span>${d.abona ? '' : ' <span class="chip warn">não abona</span>'}${d.empresa ? ` <span class="muted">· ${esc(EMPRESAS[d.empresa].rotulo)}</span>` : ''}</div>
+      <div class="sub">${d.inicio ? dataIsoBr(d.inicio) + (d.fim && d.fim !== d.inicio ? ' a ' + dataIsoBr(d.fim) : '') : (d.emissao ? dataIsoBr(d.emissao) : '')}${d.dias ? ` · ${d.dias} dia${d.dias > 1 ? 's' : ''}` : ''}${d.retorno ? ` · volta ${dataIsoBr(d.retorno)}` : ''}${(d.cid || []).length ? ' · CID ' + d.cid.map(c => c.codigo).join(', ') : ''}${d.motivo ? ' · ' + esc(d.motivo) : ''}</div>
+      <div class="sub">${esc(d.resumo || '')}</div></div>
+      <span class="row-actions"><button class="btn small" data-doc-ver="${esc(d.id)}">Ver</button><button class="btn small danger" data-doc-excluir="${esc(d.id)}">Excluir</button></span></div>`).join('')
+    : '<div class="muted">Nenhum documento salvo ainda.</div>';
+}
+const dropDoc = $('#drop-doc'), inpDoc = $('#inp-doc');
+dropDoc.addEventListener('click', () => inpDoc.click());
+dropDoc.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inpDoc.click(); } });
+inpDoc.addEventListener('change', () => { if (inpDoc.files.length) processarDocumentos(inpDoc.files); inpDoc.value = ''; });
+dropDoc.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); dropDoc.classList.add('over'); });
+dropDoc.addEventListener('dragleave', () => dropDoc.classList.remove('over'));
+dropDoc.addEventListener('drop', (e) => { e.preventDefault(); e.stopPropagation(); dropDoc.classList.remove('over'); if (e.dataTransfer.files.length) processarDocumentos(e.dataTransfer.files); });
+['#sel-empresa-doc', '#sel-tipo-doc'].forEach(s => $(s).addEventListener('change', renderDocsSalvos));
+$('#inp-busca-doc').addEventListener('input', () => { clearTimeout(renderDocsSalvos._t); renderDocsSalvos._t = setTimeout(renderDocsSalvos, 250); });
+$('#doc-cards').addEventListener('change', (e) => {
+  const sel = e.target.closest('[data-doc-pessoa]'); if (!sel) return;
+  const card = docs.cards.find(c => c.id === sel.dataset.docPessoa); if (!card || !card.analise) return;
+  const [emp, cod] = sel.value.split('|');
+  const c = emp ? (state.cadastro[emp] || []).find(x => x.codigo === cod) : null;
+  card.analise.pessoa.codigo = c ? c.codigo : ''; card.analise.pessoa.nome = c ? c.nome : (card.analise.pessoa.nomeNoDocumento || ''); card.analise.empresa = c ? emp : null; card.analise.pessoa.vinculo = c ? 'exato' : 'nao-encontrado';
+  renderDocCards();
+});
+$('#doc-cards').addEventListener('click', async (e) => {
+  const z = e.target.closest('[data-doc-zoom]'); if (z) { z.classList.toggle('grande'); return; }
+  const b = e.target.closest('button'); if (!b) return;
+  const id = b.dataset.docSalvar || b.dataset.docCopiar || b.dataset.docRetry || b.dataset.docDescartar;
+  const card = docs.cards.find(c => c.id === id); if (!card) return;
+  if (b.dataset.docSalvar) { b.disabled = true; await salvarDoc(card); }
+  else if (b.dataset.docCopiar) { try { await navigator.clipboard.writeText(textoDoc(card.analise)); toast('Resumo copiado'); } catch (err) { toast('Não consegui copiar'); } }
+  else if (b.dataset.docDescartar) { docs.cards = docs.cards.filter(c => c !== card); renderDocCards(); }
+  else if (b.dataset.docRetry) { toast('Mande o arquivo de novo para reler'); docs.cards = docs.cards.filter(c => c !== card); renderDocCards(); inpDoc.click(); }
+});
+$('#doc-lista').addEventListener('click', async (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.docExcluir) { if (!(await confirmar('Excluir este documento do histórico?', 'Excluir'))) return; await store.del('documentos/' + b.dataset.docExcluir); renderDocsSalvos(); return; }
+  if (b.dataset.docVer) {
+    const d = docs.salvos.find(x => x.id === b.dataset.docVer); if (!d) return;
+    const a = { tipo: d.tipo, subtipo: d.subtipo, abona: d.abona, legivel: true, pessoa: { nome: d.nome, nomeNoDocumento: d.nome, codigo: d.codigo, vinculo: d.codigo ? 'exato' : 'nao-encontrado' }, empresa: d.empresa, emissao: { data: d.emissao }, periodo: { inicio: d.inicio, fim: d.fim, dias: d.dias, parcial: d.parcial, horaInicio: d.horaInicio, horaFim: d.horaFim }, retornoAoTrabalho: d.retorno, cid: (d.cid || []).map(c => ({ ...c, ...(cidInfo(c.codigo) || {}) })), motivo: d.motivo, profissional: d.profissional || {}, resumo: d.resumo, oQueFazer: d.oQueFazer, duvidas: d.duvidas || [] };
+    docs.cards.unshift({ id: 'ver-' + d.id, arquivo: d.arquivo || '', status: 'pronto', analise: a, thumb: d.thumb || '' }); renderDocCards(); window.scrollTo({ top: $('#doc-cards').offsetTop - 80, behavior: 'smooth' });
+  }
+});
+
+
+
+/* ===================== Caixa de pergunta própria (o visualizador bloqueia prompt/confirm do navegador) ===================== */
+function perguntar(cfg) {
+  // cfg: { titulo, mensagem, campos: [{nome, rotulo, tipo:'date'|'text'|'number'|'select', valor, opcoes:[{v,r}]}], ok, cancelar }
+  return new Promise((res) => {
+    const bg = document.createElement('div'); bg.className = 'dlg-bg';
+    const campos = (cfg.campos || []).map((c, i) => {
+      if (c.tipo === 'select') return `<label>${esc(c.rotulo || '')}<select name="${esc(c.nome)}">${(c.opcoes || []).map(o => `<option value="${esc(o.v)}" ${String(o.v) === String(c.valor) ? 'selected' : ''}>${esc(o.r)}</option>`).join('')}</select></label>`;
+      // datas e meses como texto simples: o painel do Claude não abre o calendário nativo
+      let tipo = c.tipo || 'text', valor = c.valor ?? '', ph = c.placeholder || '';
+      if (c.tipo === 'date') { tipo = 'text'; const d = isoDate(valor) || parseData(String(valor)); valor = d ? fmtData(d) : ''; ph = 'dd/mm/aaaa'; }
+      if (c.tipo === 'month') { tipo = 'text'; const m = String(valor).match(/^(\d{4})-(\d{2})$/); valor = m ? `${m[2]}/${m[1]}` : String(valor); ph = 'mm/aaaa'; }
+      return `<label>${esc(c.rotulo || '')}${ph ? ` <span class="muted">(${esc(ph)})</span>` : ''}<input name="${esc(c.nome)}" type="${tipo}" ${tipo === 'number' ? 'inputmode="numeric"' : ''} value="${esc(valor)}" placeholder="${esc(ph)}" autocomplete="off" ${i === 0 ? 'autofocus' : ''}></label>`;
+    }).join('');
+    // sem <form>: o painel do Claude bloqueia envio de formulário, então o botão é um botão comum
+    bg.innerHTML = `<div class="dlg" role="dialog" aria-modal="true"><h3>${esc(cfg.titulo || '')}</h3>${cfg.mensagem ? `<p class="msg">${esc(cfg.mensagem)}</p>` : ''}${campos}<div class="acoes"><button type="button" class="btn" data-cancel>${esc(cfg.cancelar || 'Cancelar')}</button><button type="button" class="btn primary" data-ok>${esc(cfg.ok || 'OK')}</button></div></div>`;
+    const fechar = (v) => { bg.remove(); document.removeEventListener('keydown', esc_); res(v); };
+    const esc_ = (e) => { if (e.key === 'Escape') fechar(null); };
+    bg.querySelector('[data-cancel]').addEventListener('click', () => fechar(null));
+    bg.addEventListener('click', (e) => { if (e.target === bg) fechar(null); });
+    const confirmar_ = () => {
+      const out = {};
+      for (const c of (cfg.campos || [])) {
+        const el = bg.querySelector(`[name="${c.nome}"]`); let v = el ? el.value : null;
+        if (c.tipo === 'date' && v != null) { const d = parseData(String(v).trim()) || isoDate(String(v).trim()); if (!d) { toast('Data inválida: use dd/mm/aaaa'); el.focus(); return; } v = toIso(d); }
+        if (c.tipo === 'month' && v != null) { const t = String(v).trim(); let m = t.match(/^(\d{1,2})\s*\/\s*(\d{4})$/); if (m) v = `${m[2]}-${m[1].padStart(2, '0')}`; else if (/^\d{4}-\d{2}$/.test(t)) v = t; else { toast('Mês inválido: use mm/aaaa'); el.focus(); return; } }
+        out[c.nome] = v;
+      }
+      fechar(out);
+    };
+    bg.querySelector('[data-ok]').addEventListener('click', confirmar_);
+    bg.querySelectorAll('input').forEach(i => i.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); confirmar_(); } }));
+    document.addEventListener('keydown', esc_);
+    document.body.appendChild(bg);
+    const first = bg.querySelector('input,select'); if (first) setTimeout(() => first.focus(), 30);
+  });
+}
+async function confirmar(mensagem, ok) { const r = await perguntar({ titulo: 'Confirmar', mensagem, ok: ok || 'Sim', cancelar: 'Não' }); return r != null; }
+async function perguntarData(titulo, mensagem, valorIso) { const r = await perguntar({ titulo, mensagem, campos: [{ nome: 'data', rotulo: 'Data', tipo: 'date', valor: valorIso || toIso(new Date()) }] }); return r && r.data ? isoDate(r.data) : null; }
+
+/* ===================== Exames médicos (PCMSO) ===================== */
+const EX_TIPOS = { admissional: 'Admissional', periodico: 'Periódico', retorno: 'Retorno ao trabalho', mudanca: 'Mudança de função', demissional: 'Demissional' };
+const exames = { dados: {}, carregado: {} };
+function exConfigPadrao(empId) { return { meses: 12, grau: empId === 'diverse' ? 3 : 2, antecedencia: 30 }; }
+async function carregarExames(empId) {
+  if (exames.carregado[empId]) return exames.dados[empId];
+  const d = await store.get('exames/' + empId);
+  exames.dados[empId] = { porCodigo: (d && d.porCodigo) || {}, config: { ...exConfigPadrao(empId), ...((d && d.config) || {}) } };
+  exames.carregado[empId] = true;
+  return exames.dados[empId];
+}
+async function salvarExames(empId) {
+  const d = exames.dados[empId]; if (!d) return;
+  const ok = await store.set('exames/' + empId, { porCodigo: d.porCodigo, config: d.config, atualizadoEm: new Date().toISOString() });
+  if (!ok) toast('Exames salvos só neste navegador');
+  atualizarBadgeExames();
+}
+function addDiasIso(iso, n) { const d = isoDate(iso); return d ? toIso(somaDias(d, n)) : null; }
+function addMesesIso(iso, n) { const d = isoDate(iso); return d ? toIso(addMeses(d, n)) : null; }
+// situação de um colaborador: {proximo:{tipo, data, motivo}, status:'vencido'|'vence'|'emdia'|'semregistro'|'agendado'|'dispensado', dias}
+function situacaoExame(c, reg, cfg, hoje) {
+  reg = reg || {};
+  const out = { proximo: null, status: 'emdia', dias: null, alertas: [] };
+  const hojeIso = toIso(hoje);
+  // desligamento → demissional
+  if (reg.desligamento) {
+    const limite = addDiasIso(reg.desligamento, 10);
+    const janela = (cfg.grau >= 3 ? 90 : 135);
+    const ultimoOk = reg.ultimoData && isoDate(reg.ultimoData) >= somaDias(isoDate(reg.desligamento), -janela);
+    if (reg.demissionalData) { out.status = 'feito'; out.proximo = { tipo: 'demissional', data: reg.demissionalData, motivo: 'demissional realizado' }; return out; }
+    if (ultimoOk) { out.status = 'dispensado'; out.proximo = { tipo: 'demissional', data: limite, motivo: `dispensado: último exame em ${dataIsoBr(reg.ultimoData)} (menos de ${janela} dias antes do desligamento)` }; return out; }
+    const n = diasAte(isoDate(limite));
+    out.proximo = { tipo: 'demissional', data: limite, motivo: `desligado em ${dataIsoBr(reg.desligamento)}: demissional até 10 dias depois` };
+    out.dias = n; out.status = n < 0 ? 'vencido' : 'vence'; return out;
+  }
+  // retorno ao trabalho: afastamento ≥ 30 dias (do cadastro/prazos)
+  const pz = prazosDe(c);
+  if (pz.afastamento && pz.afastamento.dias != null && pz.afastamento.fim && (c.afastamento && (c.afastamento.dias || 0) >= 30)) {
+    const volta = toIso(pz.afastamento.fim);
+    if (!(reg.ultimoTipo === 'retorno' && reg.ultimoData >= volta)) {
+      out.alertas.push(`Afastamento de ${c.afastamento.dias} dias: exame de retorno ao trabalho no 1º dia de volta (${dataIsoBr(volta)}).`);
+    }
+  }
+  // sem registro → admissional (recém-admitido) ou "informe o último exame"
+  if (!reg.ultimoData) {
+    const adm = parseData(c.admissao);
+    if (adm && diasAte(adm) >= -60) { out.proximo = { tipo: 'admissional', data: toIso(adm), motivo: diasAte(adm) >= 0 ? 'admissão em breve: admissional antes de começar' : 'admitido há pouco: registre a data do admissional' }; out.dias = diasAte(adm); out.status = out.dias >= 0 ? 'vence' : 'semregistro'; }
+    else { out.proximo = { tipo: 'periodico', data: null, motivo: 'sem registro: informe a data do último exame' }; out.status = 'semregistro'; }
+  } else {
+    const prox = addMesesIso(reg.ultimoData, cfg.meses);
+    const n = diasAte(isoDate(prox));
+    out.proximo = { tipo: 'periodico', data: prox, motivo: `${cfg.meses} meses após o último (${EX_TIPOS[reg.ultimoTipo] || 'exame'} em ${dataIsoBr(reg.ultimoData)})` };
+    out.dias = n; out.status = n < 0 ? 'vencido' : n <= cfg.antecedencia ? 'vence' : 'emdia';
+  }
+  if (reg.agendadoData && reg.agendadoData >= hojeIso && (out.status === 'vencido' || out.status === 'vence' || out.status === 'semregistro')) out.status = 'agendado';
+  return out;
+}
+function situacaoChip(sit) {
+  const m = { vencido: ['crit', `VENCIDO há ${-sit.dias} dia${-sit.dias === 1 ? '' : 's'}`], vence: ['warn', sit.dias === 0 ? 'vence HOJE' : `vence em ${sit.dias} dia${sit.dias === 1 ? '' : 's'}`], emdia: ['ok', 'em dia'], semregistro: ['warn', 'sem registro'], agendado: ['info', 'agendado'], dispensado: ['ok', 'demissional dispensado'], feito: ['ok', 'demissional feito'] };
+  const [t, txt] = m[sit.status] || ['', sit.status];
+  return `<span class="chip ${t}">${txt}</span>`;
+}
+function pendenciasExames(empId) {
+  const d = exames.dados[empId]; if (!d) return [];
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const out = [];
+  for (const c of (state.cadastro[empId] || [])) {
+    const reg = d.porCodigo[c.codigo] || {};
+    if (c.ativo === false && !reg.desligamento) continue;
+    const sit = situacaoExame(c, reg, d.config, hoje);
+    if (['vencido', 'vence', 'semregistro'].includes(sit.status) || sit.alertas.length) out.push({ c, reg, sit });
+  }
+  return out;
+}
+async function atualizarBadgeExames() {
+  let n = 0;
+  for (const id of Object.keys(EMPRESAS)) { await carregarExames(id); n += pendenciasExames(id).filter(p => p.sit.status !== 'semregistro').length; }
+  const b = $('#ex-badge'); b.textContent = String(n); b.hidden = !n;
+}
+async function renderExames() {
+  renderExames._tocado = true;
+  const empId = $('#sel-empresa-ex').value;
+  const d = await carregarExames(empId);
+  $('#ex-meses').value = d.config.meses; $('#ex-grau').value = d.config.grau; $('#ex-antec').value = d.config.antecedencia;
+  const filtro = $('#ex-filtro').value;
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const cad = [...(state.cadastro[empId] || [])].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  const linhas = [];
+  let vencidos = 0, vencendo = 0, semReg = 0, agendados = 0, emDia = 0;
+  for (const c of cad) {
+    const reg = d.porCodigo[c.codigo] || {};
+    const desligado = c.ativo === false || !!reg.desligamento;
+    if (filtro === 'desligados' ? !desligado : desligado && !reg.desligamento) continue;
+    const sit = situacaoExame(c, reg, d.config, hoje);
+    if (sit.status === 'vencido') vencidos++; else if (sit.status === 'vence') vencendo++; else if (sit.status === 'semregistro') semReg++; else if (sit.status === 'agendado') agendados++; else emDia++;
+    const pendente = ['vencido', 'vence', 'semregistro', 'agendado'].includes(sit.status) || sit.alertas.length;
+    if (filtro === 'pendentes' && !pendente) continue;
+    linhas.push({ c, reg, sit, ordem: sit.status === 'vencido' ? 0 : sit.status === 'vence' ? 1 : sit.status === 'semregistro' ? 2 : sit.status === 'agendado' ? 3 : 4 });
+  }
+  linhas.sort((a, b) => a.ordem - b.ordem || (a.sit.dias ?? 9999) - (b.sit.dias ?? 9999) || a.c.nome.localeCompare(b.c.nome, 'pt-BR'));
+  $('#ex-tiles').innerHTML = [
+    ['Vencidos', vencidos, 'exame atrasado', vencidos ? 'crit' : ''], ['Vencendo', vencendo, `nos próximos ${d.config.antecedencia} dias`, vencendo ? 'warn' : ''],
+    ['Sem registro', semReg, 'informe o último exame', semReg ? 'warn' : ''], ['Agendados', agendados, 'com data marcada', ''], ['Em dia', emDia, 'nada a fazer', ''],
+  ].map(([k, v, s, t]) => `<div class="tile"><div class="k">${k}</div><div class="v" style="${t === 'crit' ? 'color:var(--crit)' : t === 'warn' ? 'color:var(--warn)' : ''}">${v}</div><div class="s">${s}</div></div>`).join('');
+  const alertas = linhas.flatMap(l => l.sit.alertas.map(a => `<li><strong>${esc(l.c.nome)}</strong>: ${esc(a)}</li>`));
+  $('#ex-avisos').innerHTML = alertas.length ? `<div class="notice warn"><strong>Retorno ao trabalho</strong><ul>${alertas.join('')}</ul></div>` : '';
+  const opcoesTipo = (sel) => Object.entries(EX_TIPOS).map(([k, v]) => `<option value="${k}" ${sel === k ? 'selected' : ''}>${v}</option>`).join('');
+  $('#tbl-ex tbody').innerHTML = linhas.length ? linhas.map(({ c, reg, sit }) => {
+    const prox = sit.proximo;
+    return `<tr>
+      <td class="name">${esc(c.nome)}${c.ativo === false || reg.desligamento ? ' <span class="chip">desligado</span>' : ''}</td>
+      <td class="mono">${esc(c.admissao || '')}</td>
+      <td><select class="cell" data-ex-tipo="${esc(c.codigo)}">${opcoesTipo(reg.ultimoTipo || 'periodico')}</select> <input class="cell" type="date" data-ex-ultimo="${esc(c.codigo)}" value="${esc(reg.ultimoData || '')}" aria-label="Data do último exame de ${esc(c.nome)}"></td>
+      <td>${prox ? `<strong>${EX_TIPOS[prox.tipo] || prox.tipo}</strong>${prox.data ? ' · ' + dataIsoBr(prox.data) : ''}<br><span class="muted" style="font-size:12px">${esc(prox.motivo)}</span>` : '—'}</td>
+      <td>${situacaoChip(sit)}</td>
+      <td>${reg.desligamento && !reg.demissionalData ? `<span class="muted">desligado em ${dataIsoBr(reg.desligamento)}</span>` : `<input class="cell" type="date" data-ex-agendado="${esc(c.codigo)}" value="${esc(reg.agendadoData || '')}" aria-label="Exame agendado de ${esc(c.nome)}">`}</td>
+      <td class="row-actions">${reg.desligamento ? (reg.demissionalData ? '' : `<button class="btn small primary" data-ex-demissional="${esc(c.codigo)}">Demissional feito</button>`) : `<button class="btn small primary" data-ex-feito="${esc(c.codigo)}">Exame feito</button><button class="btn small" data-ex-desligar="${esc(c.codigo)}">Desligamento</button>`}${(reg.historico || []).length ? `<button class="btn small" data-ex-hist="${esc(c.codigo)}" title="${esc(reg.historico.map(h => `${EX_TIPOS[h.tipo] || h.tipo} ${dataIsoBr(h.data)}`).join(' · '))}">${reg.historico.length} no histórico</button>` : ''}</td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="7" class="muted">${filtro === 'pendentes' ? 'Nenhuma pendência: todo mundo em dia.' : 'Ninguém aqui.'}</td></tr>`;
+  atualizarBadgeExames();
+}
+$('#sel-empresa-ex').addEventListener('change', renderExames);
+$('#ex-filtro').addEventListener('change', renderExames);
+['#ex-meses', '#ex-grau', '#ex-antec'].forEach(sel => $(sel).addEventListener('change', async () => {
+  const empId = $('#sel-empresa-ex').value; const d = await carregarExames(empId);
+  d.config = { meses: Math.max(1, +$('#ex-meses').value || 12), grau: +$('#ex-grau').value || 2, antecedencia: Math.max(1, +$('#ex-antec').value || 30) };
+  await salvarExames(empId); renderExames();
+}));
+$('#tbl-ex').addEventListener('change', async (e) => {
+  const t = e.target; const empId = $('#sel-empresa-ex').value; const d = await carregarExames(empId);
+  const cod = t.dataset.exTipo || t.dataset.exUltimo || t.dataset.exAgendado; if (!cod) return;
+  const reg = d.porCodigo[cod] || (d.porCodigo[cod] = {});
+  if (t.dataset.exTipo) reg.ultimoTipo = t.value;
+  if (t.dataset.exUltimo) { reg.ultimoData = t.value || null; if (!reg.ultimoTipo) reg.ultimoTipo = $(`[data-ex-tipo="${cod}"]`).value; }
+  if (t.dataset.exAgendado) { reg.agendadoData = t.value || null; reg.agendadoTipo = (reg.agendadoData && d.porCodigo[cod]) ? (situacaoExame((state.cadastro[empId] || []).find(c => c.codigo === cod) || {}, reg, d.config, new Date()).proximo || {}).tipo : null; }
+  await salvarExames(empId); renderExames();
+});
+$('#tbl-ex').addEventListener('click', async (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  const empId = $('#sel-empresa-ex').value; const d = await carregarExames(empId);
+  const cod = b.dataset.exFeito || b.dataset.exDesligar || b.dataset.exDemissional || b.dataset.exHist; if (!cod) return;
+  const c = (state.cadastro[empId] || []).find(x => x.codigo === cod); if (!c) return;
+  const reg = d.porCodigo[cod] || (d.porCodigo[cod] = {});
+  if (b.dataset.exHist) { toast((reg.historico || []).map(h => `${EX_TIPOS[h.tipo] || h.tipo} em ${dataIsoBr(h.data)}`).join(' · ') || 'Sem histórico'); return; }
+  if (b.dataset.exFeito) {
+    const sit = situacaoExame(c, reg, d.config, new Date());
+    const tipoSug = reg.agendadoTipo || (sit.proximo && sit.proximo.tipo) || 'periodico';
+    const dataPadrao = reg.agendadoData || toIso(new Date());
+    const r = await perguntar({ titulo: 'Exame feito', mensagem: `${c.nome}`, campos: [{ nome: 'tipo', rotulo: 'Tipo de exame', tipo: 'select', valor: tipoSug, opcoes: Object.entries(EX_TIPOS).map(([v, r]) => ({ v, r })) }, { nome: 'data', rotulo: 'Data em que fez o exame', tipo: 'date', valor: dataPadrao }], ok: 'Registrar' });
+    if (!r) return;
+    const dt = isoDate(r.data); if (!dt) { toast('Informe a data'); return; }
+    const tipo = r.tipo || tipoSug;
+    reg.historico = reg.historico || []; if (reg.ultimoData) reg.historico.push({ tipo: reg.ultimoTipo || 'periodico', data: reg.ultimoData });
+    reg.ultimoTipo = tipo; reg.ultimoData = toIso(dt); reg.agendadoData = null; reg.agendadoTipo = null;
+    await salvarExames(empId); toast(`${EX_TIPOS[tipo]} registrado: próximo em ${dataIsoBr(addMesesIso(reg.ultimoData, d.config.meses))}`); renderExames(); return;
+  }
+  if (b.dataset.exDesligar) {
+    const dt = await perguntarData('Desligamento', `Data do desligamento de ${c.nome}`); if (!dt) return;
+    reg.desligamento = toIso(dt); reg.agendadoData = null;
+    await salvarExames(empId); renderExames(); return;
+  }
+  if (b.dataset.exDemissional) {
+    const dt = await perguntarData('Demissional feito', `Data do exame demissional de ${c.nome}`); if (!dt) return;
+    reg.demissionalData = toIso(dt); reg.historico = reg.historico || []; reg.historico.push({ tipo: 'demissional', data: reg.demissionalData });
+    await salvarExames(empId); renderExames(); return;
+  }
+});
+$('#btn-ex-copiar').addEventListener('click', async () => {
+  const linhas = [];
+  for (const id of Object.keys(EMPRESAS)) {
+    await carregarExames(id);
+    const p = pendenciasExames(id); if (!p.length) continue;
+    linhas.push(`${EMPRESAS[id].rotulo}:`);
+    for (const { c, reg, sit } of p.sort((a, b) => (a.sit.dias ?? 9999) - (b.sit.dias ?? 9999))) {
+      const pr = sit.proximo || {};
+      linhas.push(`- ${c.nome}: ${EX_TIPOS[pr.tipo] || 'exame'}${pr.data ? ' até ' + dataIsoBr(pr.data) : ''} (${situacaoChip(sit).replace(/<[^>]+>/g, '')}${reg.agendadoData ? ', agendado ' + dataIsoBr(reg.agendadoData) : ''})${sit.alertas.length ? ' · ' + sit.alertas.join(' ') : ''}`);
+    }
+  }
+  const txt = linhas.length ? `Exames pendentes em ${fmtData(new Date())}\n` + linhas.join('\n') : 'Nenhum exame pendente.';
+  try { await navigator.clipboard.writeText(txt); toast('Lista copiada'); } catch (e) { await perguntar({ titulo: 'Copie a lista', campos: [{ nome: 't', rotulo: '', tipo: 'text', valor: txt }], ok: 'Fechar' }); }
+});
+
+
+/* ===================== ASO: leitura automática do exame ===================== */
+exames.cards = [];
+function promptAso(textoPdf, nArq, confOcr) {
+  const hoje = new Date();
+  return `Você é o assistente do RH das empresas Oslo Closet e Diverse Estilos (Descalvado-SP, Brasil). O documento anexado (foto, scan ou PDF de ${nArq} página(s)) deve ser um ASO — Atestado de Saúde Ocupacional — ou outro documento de exame ocupacional (encaminhamento, guia de exame, laudo). Extraia TUDO. Hoje é ${fmtData(hoje)}.
+
+Colaboradores cadastrados (use exatamente um destes nomes em "pessoa.nomeCadastro" quando corresponder ao nome do documento, mesmo com abreviação, acento diferente ou erro de leitura; senão null):
+${listaColaboradoresPrompt()}
+
+Tipos de exame (campo "tipoExame"): "admissional", "periodico", "retorno" (retorno ao trabalho), "mudanca" (mudança de função/risco), "demissional". No ASO o tipo costuma vir marcado com X ou em negrito. Se o documento não for um ASO (ex.: só uma guia de encaminhamento ou um exame complementar como audiometria), diga em "ehAso": false e descreva em "subtipo".
+
+${textoPdf ? (confOcr != null ? `Você NÃO está vendo a imagem: abaixo está o texto obtido por OCR (confiança ${Math.round(confOcr)}%). O OCR erra letras e troca números parecidos (1/7, 0/8, 3/8), perde acentos e embaralha a ordem; o "X" da opção marcada muitas vezes some, então deduza o tipo pelo contexto (ex.: "admissional" perto de data de admissão). Corrija erros óbvios de nome usando a lista e aponte em "duvidas" o que ficou incerto.\n` : 'Texto extraído do PDF (pode ajudar na leitura):\n') + '<<<' + textoPdf.slice(0, 6000) + '>>>\n\n' : ''}Responda SOMENTE com um objeto JSON neste formato (null quando não houver; datas AAAA-MM-DD):
+{
+ "ehAso": true | false,
+ "subtipo": "ASO | encaminhamento | exame complementar (qual) | laudo | outro",
+ "legivel": true | false,
+ "pessoa": { "nomeNoDocumento": "nome como está escrito", "nomeCadastro": "nome exato da lista ou null", "confianca": "alta" | "media" | "baixa", "cpf": "se constar" },
+ "empresa": "oslo" | "diverse" | null,
+ "empresaNoDocumento": "razão social/CNPJ que aparece no documento ou null",
+ "tipoExame": "admissional" | "periodico" | "retorno" | "mudanca" | "demissional" | null,
+ "dataExame": "AAAA-MM-DD (data do exame clínico / emissão do ASO)",
+ "resultado": "apto" | "inapto" | "apto com restrições" | null,
+ "restricoes": "texto das restrições, se houver",
+ "funcao": "função/cargo que consta",
+ "riscos": ["riscos ocupacionais listados"],
+ "examesComplementares": [ { "nome": "ex.: audiometria, hemograma, acuidade visual", "data": "AAAA-MM-DD ou null" } ],
+ "medico": { "nome": "médico examinador", "crm": "CRM com UF", "coordenador": "médico coordenador do PCMSO, se constar" },
+ "clinica": "nome da clínica/serviço",
+ "validadeOuProximo": "AAAA-MM-DD se o documento indicar validade ou data do próximo exame, senão null",
+ "resumo": "2 a 3 frases: quem, qual tipo de exame, quando, resultado, médico/clínica",
+ "duvidas": [ "o que o RH deve conferir (tipo não marcado, data ilegível, nome diferente, sem assinatura/CRM...)" ]
+}`;
+}
+function completarAso(a) {
+  a.pessoa = a.pessoa || {}; a.medico = a.medico || {}; a.riscos = Array.isArray(a.riscos) ? a.riscos : []; a.examesComplementares = Array.isArray(a.examesComplementares) ? a.examesComplementares : []; a.duvidas = Array.isArray(a.duvidas) ? a.duvidas.filter(Boolean) : [];
+  const v = vincularPessoa(a.pessoa.nomeCadastro, a.pessoa.nomeNoDocumento);
+  if (v) { a.pessoa.codigo = v.c.codigo; a.pessoa.nome = v.c.nome; a.empresa = v.empresaId; a.pessoa.vinculo = v.score >= 0.99 ? 'exato' : 'parecido'; }
+  else { a.pessoa.nome = a.pessoa.nomeCadastro || a.pessoa.nomeNoDocumento || ''; a.pessoa.codigo = ''; a.pessoa.vinculo = 'nao-encontrado'; }
+  if (!a.dataExame) a.duvidas.push('Não achei a data do exame: informe antes de registrar.');
+  if (!a.tipoExame) a.duvidas.push('Não ficou claro o tipo de exame (admissional, periódico…): escolha no cartão.');
+  if (a.ehAso === false) a.duvidas.push('Este documento não parece ser um ASO (' + (a.subtipo || 'outro') + '): confira antes de registrar como exame.');
+  if (a.resultado && /inapto/i.test(a.resultado) && !/apto com/i.test(a.resultado)) a.duvidas.push('Resultado INAPTO: a pessoa não pode exercer a função até novo exame.');
+  return a;
+}
+function renderAsoCards() {
+  const box = $('#ex-cards');
+  box.innerHTML = exames.cards.map(card => {
+    if (card.status === 'analisando') return `<div class="doc-card analisando" data-card="${card.id}"><div><div class="cabeca"><span class="tipo">Lendo ${esc(card.arquivo)}…</span><span class="chip info">${esc(card.etapa || 'lendo… (pode levar até 1 minuto)')}</span></div></div></div>`;
+    if (card.status === 'erro') return `<div class="doc-card analisando" data-card="${card.id}"><div><div class="cabeca"><span class="tipo">${esc(card.arquivo)}</span><span class="chip crit">não foi possível ler</span></div><div class="notice crit">${esc(card.erro)}</div><div class="acoes"><button class="btn small" data-aso-descartar="${card.id}">Descartar</button></div></div></div>`;
+    const a = card.analise, pes = a.pessoa || {}, med = a.medico || {};
+    const chips = [`<span class="chip ${a.ehAso === false ? 'warn' : 'ok'}">${esc(a.ehAso === false ? (a.subtipo || 'não é ASO') : 'ASO')}</span>`];
+    if (a.resultado) chips.push(`<span class="chip ${/inapto/i.test(a.resultado) && !/apto com/i.test(a.resultado) ? 'crit' : /restri/i.test(a.resultado) ? 'warn' : 'ok'}">${esc(a.resultado)}</span>`);
+    if (pes.vinculo === 'parecido') chips.push('<span class="chip info">nome parecido — confira</span>');
+    if (pes.vinculo === 'nao-encontrado') chips.push('<span class="chip crit">não está no cadastro</span>');
+    if (a.viaOcr) chips.push(`<span class="chip warn">lido por OCR${a.ocrConfianca != null ? ' · ' + a.ocrConfianca + '%' : ''}</span>`);
+    const opcoesTipo = Object.entries(EX_TIPOS).map(([k, v]) => `<option value="${k}" ${a.tipoExame === k ? 'selected' : ''}>${v}</option>`).join('');
+    return `<div class="doc-card" data-card="${card.id}">
+      <div>
+        <div class="cabeca"><span class="tipo">${esc(pes.nome || pes.nomeNoDocumento || 'Colaborador não identificado')}</span>${chips.join('')}<span class="muted" style="margin-left:auto">${esc(card.arquivo)}</span></div>
+        <div class="grade">
+          <div><span class="k">Colaborador (corrija se precisar)</span><select class="cell" data-aso-pessoa="${card.id}">${opcoesColab(a.empresa && pes.codigo ? a.empresa + '|' + pes.codigo : '')}</select></div>
+          <div><span class="k">Tipo de exame</span><select class="cell" data-aso-tipo="${card.id}"><option value="" ${!a.tipoExame ? 'selected' : ''}>— escolha —</option>${opcoesTipo}</select></div>
+          <div><span class="k">Data do exame</span><input class="cell" type="date" data-aso-data="${card.id}" value="${esc(a.dataExame || '')}"></div>
+          <div><span class="k">Nome no documento</span>${esc(pes.nomeNoDocumento || '—')}${a.empresaNoDocumento ? `<br><span class="muted">${esc(a.empresaNoDocumento)}</span>` : ''}</div>
+          <div><span class="k">Função / riscos</span>${esc(a.funcao || '—')}${a.riscos.length ? `<br><span class="muted">${esc(a.riscos.join(', '))}</span>` : ''}</div>
+          <div><span class="k">Médico / clínica</span>${esc([med.nome, med.crm].filter(Boolean).join(' · ') || '—')}${a.clinica ? `<br><span class="muted">${esc(a.clinica)}</span>` : ''}</div>
+          ${a.examesComplementares.length ? `<div><span class="k">Exames complementares</span>${esc(a.examesComplementares.map(e => e.nome + (e.data ? ' (' + dataIsoBr(e.data) + ')' : '')).join(', '))}</div>` : ''}
+          ${a.restricoes ? `<div><span class="k">Restrições</span>${esc(a.restricoes)}</div>` : ''}
+          ${a.validadeOuProximo ? `<div><span class="k">Validade / próximo no documento</span>${esc(dataIsoBr(a.validadeOuProximo))}</div>` : ''}
+        </div>
+        <div class="resumo"><strong>Resumo:</strong> ${esc(a.resumo || '')}</div>
+        ${a.duvidas.length ? `<div class="notice warn" style="margin-top:8px"><strong>Confira:</strong><ul>${a.duvidas.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
+        ${a.viaOcr && a.textoOcr ? `<details style="margin-top:6px"><summary class="muted" style="cursor:pointer;font-size:12.5px">Ver o texto que o OCR leu</summary><pre style="white-space:pre-wrap;font-size:12px;background:var(--surface-2);padding:8px;border-radius:6px">${esc(a.textoOcr.slice(0, 3000))}</pre></details>` : ''}
+        <div class="acoes">${pes.vinculo === 'nao-encontrado' ? `<button class="btn primary small" data-aso-cadastrar="${card.id}">Cadastrar e registrar</button><button class="btn small" data-aso-ex="${card.id}">Guardar como ex-funcionário</button>` : `<button class="btn primary small" data-aso-registrar="${card.id}">Registrar na tabela</button>`}<button class="btn small danger" data-aso-descartar="${card.id}">Descartar</button></div>
+      </div>
+      ${card.thumb ? `<img class="thumb" src="${card.thumb}" alt="ASO" data-doc-zoom>` : '<div></div>'}
+    </div>`;
+  }).join('') + (exames.cards.filter(c => c.status === 'pronto').length > 1 ? `<div class="toolbar"><button class="btn primary" id="btn-aso-todos">Registrar todos os ${exames.cards.filter(c => c.status === 'pronto').length} na tabela</button></div>` : '');
+}
+async function registrarAso(card) {
+  const a = card.analise;
+  if (!a.pessoa.codigo || !a.empresa) { toast('Escolha o colaborador antes de registrar'); return false; }
+  if (!a.tipoExame) { toast('Escolha o tipo de exame'); return false; }
+  if (!a.dataExame) { toast('Informe a data do exame'); return false; }
+  const d = await carregarExames(a.empresa);
+  const reg = d.porCodigo[a.pessoa.codigo] || (d.porCodigo[a.pessoa.codigo] = {});
+  reg.historico = reg.historico || [];
+  if (a.tipoExame === 'demissional') {
+    reg.demissionalData = a.dataExame; if (!reg.desligamento) reg.desligamento = a.dataExame;
+    reg.historico.push({ tipo: 'demissional', data: a.dataExame, resultado: a.resultado || null, arquivo: card.arquivo });
+  } else if (reg.ultimoData && reg.ultimoData > a.dataExame) {
+    // exame mais antigo que o já registrado: só vai para o histórico
+    reg.historico.push({ tipo: a.tipoExame, data: a.dataExame, resultado: a.resultado || null, arquivo: card.arquivo });
+  } else {
+    if (reg.ultimoData) reg.historico.push({ tipo: reg.ultimoTipo || 'periodico', data: reg.ultimoData });
+    reg.ultimoTipo = a.tipoExame; reg.ultimoData = a.dataExame; reg.resultado = a.resultado || null; reg.agendadoData = null; reg.agendadoTipo = null;
+    if (a.validadeOuProximo) reg.proximoInformado = a.validadeOuProximo;
+  }
+  await salvarExames(a.empresa);
+  // guarda também no histórico de documentos
+  try { await store.set('documentos/' + card.id, { id: card.id, arquivo: card.arquivo, salvoEm: new Date().toISOString(), tipo: 'outro', subtipo: 'ASO ' + (EX_TIPOS[a.tipoExame] || ''), empresa: a.empresa, codigo: a.pessoa.codigo, nome: a.pessoa.nome, emissao: a.dataExame, inicio: a.dataExame, fim: a.dataExame, dias: null, cid: [], motivo: a.resultado || '', abona: false, resumo: a.resumo || '', oQueFazer: '', duvidas: a.duvidas || [], profissional: { nome: a.medico.nome, registro: a.medico.crm, local: a.clinica }, thumb: card.thumb || '' }); } catch (e) { }
+  exames.cards = exames.cards.filter(c => c !== card);
+  return true;
+}
+const dropEx = $('#drop-ex'), inpEx = $('#inp-ex');
+dropEx.addEventListener('click', () => inpEx.click());
+dropEx.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inpEx.click(); } });
+inpEx.addEventListener('change', () => { if (inpEx.files.length) processarDocumentos(inpEx.files, 'aso'); inpEx.value = ''; });
+dropEx.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); dropEx.classList.add('over'); });
+dropEx.addEventListener('dragleave', () => dropEx.classList.remove('over'));
+dropEx.addEventListener('drop', (e) => { e.preventDefault(); e.stopPropagation(); dropEx.classList.remove('over'); if (e.dataTransfer.files.length) processarDocumentos(e.dataTransfer.files, 'aso'); });
+$('#ex-cards').addEventListener('change', (e) => {
+  const t = e.target; const id = t.dataset.asoPessoa || t.dataset.asoTipo || t.dataset.asoData; if (!id) return;
+  const card = exames.cards.find(c => c.id === id); if (!card || !card.analise) return;
+  const a = card.analise;
+  if (t.dataset.asoPessoa) { const [emp, cod] = t.value.split('|'); const c = emp ? (state.cadastro[emp] || []).find(x => x.codigo === cod) : null; a.pessoa.codigo = c ? c.codigo : ''; a.pessoa.nome = c ? c.nome : (a.pessoa.nomeNoDocumento || ''); a.empresa = c ? emp : null; a.pessoa.vinculo = c ? 'exato' : 'nao-encontrado'; }
+  if (t.dataset.asoTipo) a.tipoExame = t.value || null;
+  if (t.dataset.asoData) a.dataExame = t.value || null;
+  if (t.dataset.asoPessoa) renderAsoCards();
+});
+$('#ex-cards').addEventListener('click', async (e) => {
+  const z = e.target.closest('[data-doc-zoom]'); if (z) { z.classList.toggle('grande'); return; }
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'btn-aso-todos') {
+    let n = 0; for (const card of [...exames.cards].filter(c => c.status === 'pronto')) { if (await registrarAso(card)) n++; }
+    toast(`${n} exame${n === 1 ? '' : 's'} registrado${n === 1 ? '' : 's'}`); renderAsoCards(); renderExames(); return;
+  }
+  const id = b.dataset.asoRegistrar || b.dataset.asoDescartar || b.dataset.asoCadastrar || b.dataset.asoEx; const card = exames.cards.find(c => c.id === id); if (!card) return;
+  if (b.dataset.asoDescartar) { exames.cards = exames.cards.filter(c => c !== card); renderAsoCards(); return; }
+  if (b.dataset.asoCadastrar) {
+    const a = card.analise; const nome = (a.pessoa.nomeNoDocumento || a.pessoa.nome || '').toUpperCase().trim();
+    const empId = a.empresa || (a.empresaNoDocumento && /DIVERSE/i.test(a.empresaNoDocumento) ? 'diverse' : 'oslo');
+    const r = await perguntar({ titulo: 'Cadastrar colaborador', mensagem: nome, campos: [{ nome: 'emp', rotulo: 'Empresa', tipo: 'select', valor: empId, opcoes: Object.keys(EMPRESAS).map(k => ({ v: k, r: EMPRESAS[k].rotulo })) }, { nome: 'cod', rotulo: 'Código de folha (o mesmo da planilha da contabilidade)', tipo: 'text', valor: '' }], ok: 'Cadastrar e registrar' });
+    if (!r) return;
+    const emp = r.emp === 'diverse' ? 'diverse' : 'oslo';
+    const cod = String(r.cod || '').trim(); if (!cod) { toast('Informe o código'); return; }
+    const cad = state.cadastro[emp] || (state.cadastro[emp] = []);
+    if (cad.some(c => c.codigo === cod)) { toast(`O código ${cod} já é de ${cad.find(c => c.codigo === cod).nome}`); return; }
+    cad.push({ codigo: cod, nome, ativo: true }); await salvarCadastro(emp);
+    a.pessoa.codigo = cod; a.pessoa.nome = nome; a.empresa = emp; a.pessoa.vinculo = 'exato';
+    if (await registrarAso(card)) { toast(`${nome} cadastrado(a) e exame registrado`); renderAsoCards(); renderExames(); }
+    return;
+  }
+  if (b.dataset.asoEx) {
+    const a = card.analise; const nome = (a.pessoa.nomeNoDocumento || a.pessoa.nome || '').toUpperCase().trim();
+    await store.set('documentos/' + card.id, { id: card.id, arquivo: card.arquivo, salvoEm: new Date().toISOString(), tipo: 'outro', subtipo: 'ASO ' + (EX_TIPOS[a.tipoExame] || '') + ' (ex-funcionário)', empresa: a.empresa || null, codigo: '', nome, emissao: a.dataExame, inicio: a.dataExame, fim: a.dataExame, dias: null, cid: [], motivo: a.resultado || '', abona: false, resumo: a.resumo || '', oQueFazer: '', duvidas: a.duvidas || [], profissional: { nome: a.medico.nome, registro: a.medico.crm, local: a.clinica }, thumb: card.thumb || '' });
+    exames.cards = exames.cards.filter(c => c !== card); toast(`ASO de ${nome} guardado em Documentos (ex-funcionário)`); renderAsoCards(); return;
+  }
+  if (b.dataset.asoRegistrar) { b.disabled = true; if (await registrarAso(card)) { toast(`${EX_TIPOS[card.analise.tipoExame]} de ${card.analise.pessoa.nome.split(' ')[0]} registrado`); renderAsoCards(); renderExames(); } else b.disabled = false; }
+});
+
+
+/* ===================== Férias: lançamento e aba ===================== */
+async function lancarFerias(empId, c, depois) {
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const pz = prazosDe(c);
+  const sugDias = pz.ferias && pz.ferias.prog ? Math.max(1, Math.round(pz.ferias.restantes || 30)) : 30;
+  const info = pz.ferias ? (pz.ferias.adquirindo ? `período ${pz.ferias.rotulo} ainda em aquisição (completa em ${fmtData(pz.ferias.fimAq)})${pz.ferias.prog ? ` · ${pz.ferias.restantes} dias disponíveis` : ''}` : `período ${pz.ferias.rotulo}${pz.ferias.prog ? `: ${pz.ferias.restantes} dias restantes` : ''} · conceder até ${fmtData(pz.ferias.limite)}`) : '';
+  const r = await perguntar({ titulo: 'Lançar férias', mensagem: c.nome + (info ? '\n' + info : ''), campos: [
+    { nome: 'inicio', rotulo: 'Primeiro dia de férias', tipo: 'date', valor: toIso(hoje) },
+    { nome: 'dias', rotulo: 'Quantos dias (pode dividir: ex. 15 agora, 15 depois)', tipo: 'number', valor: sugDias },
+  ], ok: 'Salvar' });
+  if (!r) return false;
+  const ini = isoDate(r.inicio); if (!ini) { toast('Informe o primeiro dia'); return false; }
+  const dias = Math.max(1, Math.min(30, Math.round(Number(r.dias) || 30)));
+  const fim = addDias(ini, dias - 1); const volta = proximoDiaUtil(fim);
+  const mes = `${ini.getFullYear()}-${String(ini.getMonth() + 1).padStart(2, '0')}`;
+  if (!Array.isArray(c.ferias)) c.ferias = []; if (!c.ferias.includes(mes)) c.ferias.push(mes);
+  if (!c.feriasProg || typeof c.feriasProg !== 'object') c.feriasProg = { periodos: [] };
+  if (!Array.isArray(c.feriasProg.periodos)) c.feriasProg.periodos = [];
+  const pers = c.feriasProg.periodos.map(pp => ({ pp, iniD: parseData(pp.ini), fimD: parseData(pp.fim) })).filter(x => x.iniD).sort((a, b) => a.iniD - b.iniD);
+  let alvo = pers.find(x => (x.pp.restantes || 0) > 0);
+  if (!alvo) {
+    const ult = pers[pers.length - 1]; let pIni = ult ? addDias(ult.fimD, 1) : parseData(c.admissao);
+    if (pIni) {
+      while (addDias(addMeses(pIni, 12), -1) < addMeses(hoje, -24)) pIni = addMeses(pIni, 12);
+      const pFim = addDias(addMeses(pIni, 12), -1);
+      const novo = { ini: fmtData(pIni), fim: fmtData(pFim), direito: 30, gozados: 0, restantes: 30, limite: fmtData(addDias(addMeses(pFim, 11), 1)), gerado: true };
+      c.feriasProg.periodos.push(novo); alvo = { pp: novo };
+    }
+  }
+  if (alvo) { alvo.pp.gozados = Math.round(((alvo.pp.gozados || 0) + dias) * 10) / 10; alvo.pp.restantes = Math.max(0, Math.round(((alvo.pp.restantes || 0) - dias) * 10) / 10); }
+  c.feriasProg.gozos = c.feriasProg.gozos || [];
+  c.feriasProg.gozos.push({ mes, inicio: toIso(ini), fim: toIso(fim), volta: toIso(volta), dias, periodo: alvo ? alvo.pp.ini + ' a ' + alvo.pp.fim : null, em: new Date().toISOString() });
+  if (depois) depois();
+  toast(`Férias de ${c.nome.split(' ')[0]}: ${fmtData(ini)} a ${fmtData(fim)} (${dias} dias) · volta ${dataLonga(volta)}`);
+  await salvarCadastro(empId);
+  return true;
+}
+async function desfazerFerias(empId, c, idx, depois) {
+  const g = c.feriasProg && c.feriasProg.gozos ? c.feriasProg.gozos[idx] : null; if (!g) return;
+  if (!(await confirmar(`Apagar o lançamento de ${g.dias} dias (${g.inicio ? dataIsoBr(g.inicio) : g.mes}) de ${c.nome}?`, 'Apagar'))) return;
+  const per = (c.feriasProg.periodos || []).find(pp => g.periodo === pp.ini + ' a ' + pp.fim);
+  if (per) { per.gozados = Math.max(0, Math.round(((per.gozados || 0) - g.dias) * 10) / 10); per.restantes = Math.round(((per.restantes || 0) + g.dias) * 10) / 10; }
+  c.feriasProg.gozos.splice(idx, 1);
+  if (Array.isArray(c.ferias) && !c.feriasProg.gozos.some(x => x.mes === g.mes)) c.ferias = c.ferias.filter(m => m !== g.mes);
+  if (depois) depois(); await salvarCadastro(empId);
+}
+function renderFerias() {
+  renderFerias._tocado = true;
+  const id = $('#sel-empresa-fer').value || state.empresaId; const filtro = $('#sel-fer-filtro').value;
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const cad = (state.cadastro[id] || []).filter(c => c.ativo !== false).map(c => ({ c, p: prazosDe(c) }));
+  const quando = (n) => n < 0 ? `venceu há ${-n} dia${-n > 1 ? 's' : ''}` : n === 0 ? 'vence hoje' : `em ${n} dia${n > 1 ? 's' : ''}`;
+  let vencidas = 0, v60 = 0, marcadas = 0, emFerias = 0;
+  const linhas = cad.map(({ c, p }) => {
+    const f = p.ferias; const gozos = (c.feriasProg && c.feriasProg.gozos) || [];
+    const futuras = gozos.filter(g => g.inicio && isoDate(g.inicio) > hoje); const agora = gozos.find(g => g.inicio && g.fim && isoDate(g.inicio) <= hoje && isoDate(g.fim) >= hoje);
+    let sit = { t: '', s: '—' }, ordem = 5;
+    if (agora) { sit = { t: 'info', s: `em férias até ${dataIsoBr(agora.fim)} · volta ${dataIsoBr(agora.volta)}` }; emFerias++; ordem = 2; }
+    else if (f && !f.adquirindo) { sit = { t: f.t, s: `${f.prog ? f.restantes + ' dias a conceder' : 'pendente'} · até ${fmtData(f.limite)} (${quando(f.dias)})` }; if (f.dias < 0) { vencidas++; ordem = 0; } else if (f.dias <= 60) { v60++; ordem = 1; } else ordem = 3; }
+    else if (f) { sit = { t: '', s: `em aquisição · completa em ${fmtData(f.fimAq)}${f.prog && f.gozados ? ` · já gozou ${f.gozados}` : ''}` }; ordem = 4; }
+    if (futuras.length) marcadas++;
+    const periodo = f ? `${f.rotulo}${f.prog && f.gozados ? ` · ${f.gozados} gozados / ${f.restantes} restantes` : ''}${f.vencidos > 1 ? ` <span class="chip crit">${f.vencidos} períodos vencidos</span>` : ''}` : '—';
+    const hist = gozos.slice().sort((a, b) => String(b.inicio || b.mes).localeCompare(String(a.inicio || a.mes))).slice(0, 4).map(g => { const i = gozos.indexOf(g); const fut = g.inicio && isoDate(g.inicio) > hoje; return `<div><span class="chip ${fut ? 'info' : ''}">${g.inicio ? `${dataIsoBr(g.inicio)} a ${dataIsoBr(g.fim)}` : g.mes.slice(5) + '/' + g.mes.slice(0, 4)} · ${g.dias}d${fut ? ' · marcadas' : ''}</span>${g.inicio ? ` <button class="btn small" data-fer-aviso="${esc(c.codigo)}" data-idx="${i}" title="Aviso de férias (30 dias antes)">Aviso</button><button class="btn small" data-fer-recibo="${esc(c.codigo)}" data-idx="${i}" title="Recibo de férias">Recibo</button>` : ''} <button class="btn small" data-fer-del="${esc(c.codigo)}" data-idx="${i}" title="Apagar este lançamento">×</button></div>`; }).join('');
+    const pendente = ordem <= 1 || (f && !f.adquirindo && f.dias < 0);
+    return { c, p, sit, ordem, periodo, hist, pendente, futuras };
+  }).filter(l => filtro === 'todos' || (filtro === 'pendentes' && l.pendente) || (filtro === 'programadas' && l.futuras.length));
+  linhas.sort((a, b) => a.ordem - b.ordem || a.c.nome.localeCompare(b.c.nome, 'pt-BR'));
+  $('#fer-tiles').innerHTML = [['Vencidas', vencidas, 'limite já passou', vencidas ? 'crit' : ''], ['Vencem em 60 dias', v60, 'conceder logo', v60 ? 'warn' : ''], ['Em férias agora', emFerias, 'fora hoje', ''], ['Com férias marcadas', marcadas, 'datas futuras lançadas', '']]
+    .map(([k, v, s2, t]) => `<div class="tile"><div class="k">${k}</div><div class="v" style="${t === 'crit' ? 'color:var(--crit)' : t === 'warn' ? 'color:var(--warn)' : ''}">${v}</div><div class="s">${s2}</div></div>`).join('');
+  const avisos = [];
+  for (const { c, futuras } of linhas) for (const g of futuras) { const n = diasAte(isoDate(g.inicio)); if (n <= 35) avisos.push(`<li><strong>${esc(c.nome)}</strong>: férias começam em ${dataIsoBr(g.inicio)} (${quando(n)}) — o aviso de férias por escrito deve ser dado com 30 dias de antecedência${n < 30 ? ' <span class="chip warn">prazo do aviso já passou</span>' : ''}; pagamento até 2 dias antes.</li>`); }
+  $('#fer-avisos').innerHTML = avisos.length ? `<div class="notice warn"><strong>Férias próximas</strong><ul>${avisos.join('')}</ul></div>` : '';
+  $('#tbl-fer tbody').innerHTML = linhas.length ? linhas.map(({ c, sit, periodo, hist }) => `<tr><td class="name">${esc(c.nome)}</td><td class="mono">${esc(c.admissao || '')}</td><td>${periodo}</td><td><span class="chip ${sit.t}">${sit.s}</span></td><td>${hist || '<span class="muted">—</span>'}</td><td class="row-actions"><button class="btn small primary" data-fer-lancar="${esc(c.codigo)}">Lançar férias</button></td></tr>`).join('') : '<tr><td colspan="6" class="muted">Ninguém nesse filtro.</td></tr>';
+}
+$('#sel-empresa-fer').addEventListener('change', renderFerias);
+$('#sel-fer-filtro').addEventListener('change', renderFerias);
+$('#tbl-fer').addEventListener('click', async (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  const id = $('#sel-empresa-fer').value; const cad = state.cadastro[id] || [];
+  if (b.dataset.ferLancar) { const c = cad.find(x => x.codigo === b.dataset.ferLancar); if (c) await lancarFerias(id, c, renderFerias); }
+  if (b.dataset.ferDel) { const c = cad.find(x => x.codigo === b.dataset.ferDel); if (c) await desfazerFerias(id, c, +b.dataset.idx, renderFerias); }
+  if (b.dataset.ferAviso) { const c = cad.find(x => x.codigo === b.dataset.ferAviso); if (c) await documentoFerias(id, c, +b.dataset.idx, 'aviso'); }
+  if (b.dataset.ferRecibo) { const c = cad.find(x => x.codigo === b.dataset.ferRecibo); if (c) await documentoFerias(id, c, +b.dataset.idx, 'recibo'); }
+});
+$('#btn-fer-copiar').addEventListener('click', async () => {
+  const id = $('#sel-empresa-fer').value;
+  const rows = [...document.querySelectorAll('#tbl-fer tbody tr')].map(tr => [...tr.children].slice(0, 4).map(td => td.textContent.replace(/\s+/g, ' ').trim()).join(' | '));
+  const txt = `Férias ${EMPRESAS[id].rotulo} — ${fmtData(new Date())}\n` + rows.join('\n');
+  try { await navigator.clipboard.writeText(txt); toast('Lista copiada'); } catch (e) { await perguntar({ titulo: 'Copie a lista', campos: [{ nome: 't', rotulo: '', tipo: 'text', valor: txt }], ok: 'Fechar' }); }
+});
+
+
+/* ===================== Download genérico ===================== */
+async function baixarArquivo(nome, dados, mime) {
+  if (store.downloads) {
+    try { await store.downloads.save({ filename: nome, data: dados }); toast(`${nome} salvo`); return true; }
+    catch (e) { if (e && e.code === 'declined') { toast('Download cancelado'); return false; } console.warn(e); }
+  }
+  try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([dados], { type: mime || 'application/octet-stream' })); a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); toast(`${nome} gerado`); return true; }
+  catch (e) { toast('Não foi possível baixar o arquivo aqui'); return false; }
+}
+
+/* ===================== Hoje: painel de pendências ===================== */
+const MESES_NOME = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+function dataExtenso(d) { return `${d.getDate()} de ${MESES_NOME[d.getMonth()]} de ${d.getFullYear()}`; }
+async function calcularHoje() {
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const blocos = { exames: [], ferias: [], experiencia: [], afastamentos: [], atestados: [], fechamento: [], dados: [] };
+  const quando = (n) => n < 0 ? `venceu há ${-n} dia${-n > 1 ? 's' : ''}` : n === 0 ? 'hoje' : `em ${n} dia${n > 1 ? 's' : ''}`;
+  for (const id of Object.keys(EMPRESAS)) {
+    const emp = EMPRESAS[id].rotulo.split(' ')[0];
+    await carregarExames(id);
+    for (const { c, reg, sit } of pendenciasExames(id)) {
+      if (sit.status === 'semregistro') continue;
+      const pr = sit.proximo || {};
+      if (sit.status === 'vencido' || sit.status === 'vence') blocos.exames.push({ n: sit.dias ?? 0, t: sit.status === 'vencido' ? 'crit' : 'warn', s: `${c.nome} (${emp}): ${EX_TIPOS[pr.tipo] || 'exame'}${pr.data ? ' até ' + dataIsoBr(pr.data) : ''} — ${quando(sit.dias)}${reg.agendadoData ? ' · agendado ' + dataIsoBr(reg.agendadoData) : ''}` });
+      for (const a of sit.alertas) blocos.exames.push({ n: 0, t: 'warn', s: `${c.nome} (${emp}): ${a}` });
+    }
+    for (const c of (state.cadastro[id] || []).filter(x => x.ativo !== false)) {
+      const pz = prazosDe(c);
+      if (pz.ferias && !pz.ferias.adquirindo && pz.ferias.dias <= 60) blocos.ferias.push({ n: pz.ferias.dias, t: pz.ferias.dias < 0 ? 'crit' : 'warn', s: `${c.nome} (${emp}): ${pz.ferias.prog ? pz.ferias.restantes + ' dias' : 'férias'} a conceder até ${fmtData(pz.ferias.limite)} — ${quando(pz.ferias.dias)}` });
+      for (const g of ((c.feriasProg && c.feriasProg.gozos) || [])) { if (!g.inicio) continue; const n = diasAte(isoDate(g.inicio)); if (n >= 0 && n <= 35) blocos.ferias.push({ n, t: n < 30 ? 'warn' : '', s: `${c.nome} (${emp}): férias marcadas ${dataIsoBr(g.inicio)} a ${dataIsoBr(g.fim)} — ${quando(n)}${n < 30 ? ' · aviso de 30 dias já deveria ter sido entregue' : ' · entregar o aviso de férias'}` }); const nf = g.fim ? diasAte(isoDate(g.fim)) : null; if (nf != null && nf >= 0 && n < 0) blocos.ferias.push({ n: nf, t: '', s: `${c.nome} (${emp}): em férias, volta ${dataIsoBr(g.volta)}` }); }
+      if (pz.experiencia && pz.experiencia.dias <= 30) blocos.experiencia.push({ n: pz.experiencia.dias, t: pz.experiencia.dias < 0 ? '' : pz.experiencia.dias <= 10 ? 'warn' : '', s: pz.experiencia.dias < 0 ? `${c.nome} (${emp}): ${pz.experiencia.rot} foi em ${fmtData(pz.experiencia.data)} — se ficou, o contrato já é por prazo indeterminado` : `${c.nome} (${emp}): ${pz.experiencia.rot} em ${fmtData(pz.experiencia.data)} — ${quando(pz.experiencia.dias)} · decidir se fica ou não antes dessa data` });
+      if (pz.afastamento) { const n = pz.afastamento.dias; if (n == null) blocos.afastamentos.push({ n: 999, t: 'warn', s: `${c.nome} (${emp}): em afastamento, início não informado (aba Prazos)` }); else if (n <= 30) blocos.afastamentos.push({ n, t: n <= 7 ? 'warn' : '', s: `${c.nome} (${emp}): retorno previsto ${fmtData(pz.afastamento.fim)} — ${quando(n)} · exame de retorno no 1º dia` }); }
+      if (!c.admissao) blocos.dados.push({ n: 0, t: '', s: `${c.nome} (${emp}): sem data de admissão (aba Colaboradores)` });
+    }
+  }
+  // atestados longos (INSS) e documentos recentes
+  try {
+    const docsSalvos = await store.list('documentos');
+    for (const d of docsSalvos) {
+      if (d.tipo !== 'atestado' || !d.inicio) continue;
+      const fim = isoDate(d.fim || d.inicio); const n = diasAte(fim);
+      if ((d.dias || 0) >= 15 && n >= -30) blocos.atestados.push({ n, t: 'warn', s: `${d.nome}: atestado de ${d.dias} dias (${dataIsoBr(d.inicio)} a ${dataIsoBr(d.fim)}) — a partir do 16º dia é INSS` });
+      else if (n >= 0 && n <= 7) blocos.atestados.push({ n, t: '', s: `${d.nome}: atestado até ${dataIsoBr(d.fim)} — volta ${d.retorno ? dataIsoBr(d.retorno) : '—'}` });
+    }
+  } catch (e) { }
+  // fechamento do mês anterior
+  try {
+    const fechs = await store.list('fechamentos');
+    const ant = compAnterior(`${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}`);
+    for (const id of Object.keys(EMPRESAS)) {
+      const f = fechs.find(x => x.empresaId === id && x.competencia === ant);
+      if (!f) blocos.fechamento.push({ n: 0, t: hoje.getDate() >= 3 ? 'warn' : '', s: `${EMPRESAS[id].rotulo}: fechamento de ${compRotulo(ant)} ainda não feito` });
+    }
+  } catch (e) { }
+  for (const k in blocos) blocos[k].sort((a, b) => a.n - b.n);
+  return blocos;
+}
+function textoHoje(blocos) {
+  const T = { exames: 'Exames médicos', ferias: 'Férias', experiencia: 'Contrato de experiência', afastamentos: 'Afastamentos', atestados: 'Atestados', fechamento: 'Fechamento do mês', dados: 'Dados faltando' };
+  const linhas = [`Pendências do RH — ${fmtData(new Date())}`];
+  let total = 0;
+  for (const k of Object.keys(T)) { if (!blocos[k].length) continue; linhas.push('', T[k] + ':'); for (const it of blocos[k]) { linhas.push('- ' + it.s); total++; } }
+  if (!total) linhas.push('', 'Nada pendente nos próximos 30 dias.');
+  return linhas.join('\n');
+}
+let hojeCache = null;
+async function renderHoje() {
+  const blocos = await calcularHoje(); hojeCache = blocos;
+  const T = { exames: ['Exames médicos', 'exames'], ferias: ['Férias', 'ferias'], experiencia: ['Contrato de experiência', 'prazos'], afastamentos: ['Afastamentos', 'prazos'], atestados: ['Atestados', 'documentos'], fechamento: ['Fechamento do mês', 'fechamento'], dados: ['Dados faltando', 'colaboradores'] };
+  let urgentes = 0;
+  $('#hoje-grid').innerHTML = Object.keys(T).map(k => {
+    const itens = blocos[k]; const crit = itens.filter(i => i.t === 'crit').length, warn = itens.filter(i => i.t === 'warn').length; urgentes += crit + warn;
+    return `<div class="hoje-bloco"><h2>${T[k][0]} <span class="n ${crit ? 'crit' : warn ? 'warn' : ''}">${itens.length}</span><button class="btn small ir" data-ir="${T[k][1]}">ver</button></h2>${itens.length ? `<ul>${itens.map(i => `<li>${i.t ? `<span class="chip ${i.t}">${i.t === 'crit' ? 'vencido' : 'atenção'}</span> ` : ''}${esc(i.s)}</li>`).join('')}</ul>` : '<div class="ok">✓ nada pendente</div>'}</div>`;
+  }).join('');
+  const b = $('#hoje-badge'); b.textContent = String(urgentes); b.hidden = !urgentes;
+  $('#hoje-lead').textContent = `${fmtData(new Date())} — ${urgentes ? urgentes + (urgentes > 1 ? ' itens pedindo' : ' item pedindo') + ' atenção' : 'nada urgente'} nas duas empresas. Clique em "ver" para ir à aba certa.`;
+  publicarResumo(blocos).catch(() => {});
+}
+// guarda o resumo no banco para o lembrete semanal (tarefa agendada) ler
+async function publicarResumo(blocos) {
+  if (!store.db) return;
+  const texto = textoHoje(blocos);
+  const ultimo = store.lsGet('resumo-publicado');
+  if (ultimo && ultimo.texto === texto && Date.now() - ultimo.em < 6 * 3600e3) return;
+  try { await store.db.doc('resumo/hoje').set({ texto, geradoEm: new Date().toISOString(), versao: APP_VERSAO }); store.lsSet('resumo-publicado', { texto, em: Date.now() }); } catch (e) { console.warn('resumo', e); }
+}
+$('#hoje-grid').addEventListener('click', (e) => { const b = e.target.closest('[data-ir]'); if (b) selecionarAba(b.dataset.ir); });
+$('#btn-hoje-atualizar').addEventListener('click', () => renderHoje());
+$('#btn-hoje-copiar').addEventListener('click', async () => { const txt = textoHoje(hojeCache || await calcularHoje()); try { await navigator.clipboard.writeText(txt); toast('Resumo copiado'); } catch (e) { await perguntar({ titulo: 'Copie o resumo', campos: [{ nome: 't', rotulo: '', tipo: 'text', valor: txt }], ok: 'Fechar' }); } });
+
+/* ===================== Exportação para o contador (Excel) ===================== */
+async function exportarContador() {
+  if (!window.ExcelJS) { toast('O gerador de Excel ainda está carregando'); return; }
+  const wb = new ExcelJS.Workbook(); wb.creator = 'Fechamento de Ponto';
+  const cab = (ws, cols) => { ws.columns = cols.map(c => ({ header: c[0], key: c[1], width: c[2] || 18 })); ws.getRow(1).font = { bold: true }; ws.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD9E1F2' } }; ws.views = [{ state: 'frozen', ySplit: 1 }]; };
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const wsC = wb.addWorksheet('Colaboradores'); cab(wsC, [['Empresa', 'emp', 16], ['Código', 'cod', 9], ['Cód. contab.', 'codc', 11], ['Nome', 'nome', 40], ['Admissão', 'adm', 12], ['Situação', 'sit', 12], ['Prêmio fixo', 'bon', 12], ['Ajuda de custo', 'ajc', 14], ['Vale transporte', 'vt', 14]]);
+  const wsF = wb.addWorksheet('Férias'); cab(wsF, [['Empresa', 'emp', 16], ['Nome', 'nome', 40], ['Período aquisitivo', 'per', 24], ['Dias direito', 'dir', 11], ['Gozados', 'goz', 10], ['Restantes', 'rest', 10], ['Limite p/ gozo', 'lim', 14], ['Situação', 'sit', 28], ['Férias lançadas (início a fim · dias)', 'goz2', 50]]);
+  const wsE = wb.addWorksheet('Exames'); cab(wsE, [['Empresa', 'emp', 16], ['Nome', 'nome', 40], ['Último exame', 'ut', 16], ['Data', 'ud', 12], ['Resultado', 'res', 12], ['Próximo', 'pt', 16], ['Data limite', 'pd', 12], ['Situação', 'sit', 22], ['Agendado', 'ag', 12]]);
+  const wsD = wb.addWorksheet('Atestados e documentos'); cab(wsD, [['Empresa', 'emp', 16], ['Nome', 'nome', 40], ['Tipo', 'tipo', 26], ['Emissão', 'em', 12], ['Início', 'ini', 12], ['Fim', 'fim', 12], ['Dias', 'dias', 8], ['CID', 'cid', 14], ['Motivo', 'mot', 30], ['Abona', 'ab', 8], ['Resumo', 'res', 60]]);
+  const wsA = wb.addWorksheet('Afastamentos e prazos'); cab(wsA, [['Empresa', 'emp', 16], ['Nome', 'nome', 40], ['Experiência', 'exp', 34], ['Afastamento', 'af', 44]]);
+  for (const id of Object.keys(EMPRESAS)) {
+    const emp = EMPRESAS[id].rotulo; await carregarExames(id); const ex = exames.dados[id];
+    for (const c of (state.cadastro[id] || []).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))) {
+      wsC.addRow({ emp, cod: c.codigo, codc: c.codContab || '', nome: c.nome, adm: c.admissao || '', sit: c.ativo === false ? 'desligado' : 'ativo', bon: c.bonificacao || '', ajc: c.ajudaCusto || '', vt: valeTransporteDe(id, c) || '' });
+      if (c.ativo === false) continue;
+      const pz = prazosDe(c);
+      const pers = (c.feriasProg && c.feriasProg.periodos) || [];
+      const gz = ((c.feriasProg && c.feriasProg.gozos) || []).map(g => `${g.inicio ? dataIsoBr(g.inicio) + ' a ' + dataIsoBr(g.fim) : g.mes} · ${g.dias}d`).join('; ');
+      const sitF = pz.ferias ? (pz.ferias.adquirindo ? `em aquisição (completa ${fmtData(pz.ferias.fimAq)})` : `${pz.ferias.dias < 0 ? 'VENCIDA' : 'a conceder'} até ${fmtData(pz.ferias.limite)}`) : '';
+      if (pers.length) pers.forEach((pp, i) => wsF.addRow({ emp, nome: c.nome, per: `${pp.ini} a ${pp.fim}`, dir: pp.direito, goz: pp.gozados, rest: pp.restantes, lim: pp.limite, sit: i === pers.length - 1 ? sitF : (pp.restantes > 0 ? 'pendente' : 'quitado'), goz2: i === 0 ? gz : '' }));
+      else wsF.addRow({ emp, nome: c.nome, per: pz.ferias ? pz.ferias.rotulo : '', sit: sitF, goz2: gz });
+      const reg = (ex && ex.porCodigo[c.codigo]) || {}; const se = situacaoExame(c, reg, ex.config, hoje); const pr = se.proximo || {};
+      wsE.addRow({ emp, nome: c.nome, ut: EX_TIPOS[reg.ultimoTipo] || '', ud: reg.ultimoData ? dataIsoBr(reg.ultimoData) : '', res: reg.resultado || '', pt: EX_TIPOS[pr.tipo] || '', pd: pr.data ? dataIsoBr(pr.data) : '', sit: situacaoChip(se).replace(/<[^>]+>/g, ''), ag: reg.agendadoData ? dataIsoBr(reg.agendadoData) : '' });
+      if (pz.experiencia || pz.afastamento) wsA.addRow({ emp, nome: c.nome, exp: pz.experiencia ? `${pz.experiencia.rot}: ${fmtData(pz.experiencia.data)}` : '', af: pz.afastamento ? (pz.afastamento.dias != null ? `retorno previsto ${fmtData(pz.afastamento.fim)}` : `em afastamento${pz.afastamento.descricao ? ' · ' + pz.afastamento.descricao : ''}`) : '' });
+    }
+  }
+  try { const ds = await store.list('documentos'); ds.sort((a, b) => String(b.inicio || b.emissao || '').localeCompare(String(a.inicio || a.emissao || ''))); for (const d of ds) wsD.addRow({ emp: d.empresa ? EMPRESAS[d.empresa].rotulo : '', nome: d.nome, tipo: d.subtipo || d.tipo, em: d.emissao ? dataIsoBr(d.emissao) : '', ini: d.inicio ? dataIsoBr(d.inicio) : '', fim: d.fim ? dataIsoBr(d.fim) : '', dias: d.dias || '', cid: (d.cid || []).map(c => c.codigo).join(', '), mot: d.motivo || '', ab: d.abona ? 'sim' : 'não', res: d.resumo || '' }); } catch (e) { }
+  const out = await wb.xlsx.writeBuffer();
+  await baixarArquivo(`RH para o contador ${fmtData(new Date()).replace(/\//g, '-')}.xlsx`, out, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+}
+$('#btn-hoje-excel').addEventListener('click', exportarContador);
+
+/* ===================== Aviso e recibo de férias (PDF) ===================== */
+async function documentoFerias(empId, c, idx, tipo) {
+  const g = c.feriasProg && c.feriasProg.gozos ? c.feriasProg.gozos[idx] : null; if (!g || !g.inicio) { toast('Lançamento sem data de início'); return; }
+  if (!window.jspdf) { toast('O gerador de PDF ainda está carregando'); return; }
+  const E = { ...EMPRESAS[empId], ...(state.config[empId] || {}) };
+  const ini = isoDate(g.inicio), fim = isoDate(g.fim), volta = isoDate(g.volta) || proximoDiaUtil(fim);
+  const per = g.periodo || (c.feriasProg.periodos && c.feriasProg.periodos[0] ? c.feriasProg.periodos[0].ini + ' a ' + c.feriasProg.periodos[0].fim : '');
+  const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const W = 210, M = 20, maxW = W - 2 * M; let y = 22;
+  const linha = (txt, opt = {}) => { doc.setFont('helvetica', opt.bold ? 'bold' : 'normal'); doc.setFontSize(opt.size || 11); const ls = doc.splitTextToSize(txt, maxW); for (const l of ls) { if (opt.center) doc.text(l, W / 2, y, { align: 'center' }); else doc.text(l, M, y, { align: opt.justify ? 'justify' : 'left', maxWidth: opt.justify ? maxW : undefined }); y += (opt.size || 11) * 0.5 + 1.5; } y += opt.after ?? 2; };
+  linha(E.razao, { bold: true, size: 13, center: true }); linha(`CNPJ ${E.cnpj}`, { size: 10, center: true, after: 8 });
+  if (tipo === 'aviso') {
+    linha('AVISO DE FÉRIAS', { bold: true, size: 15, center: true, after: 10 });
+    linha(`Ao(À) Sr.(a) ${c.nome}`, { after: 6 });
+    linha(`Comunicamos que, nos termos do art. 135 da CLT, suas férias relativas ao período aquisitivo de ${per} serão concedidas de ${fmtData(ini)} a ${fmtData(fim)} (${g.dias} dia${g.dias > 1 ? 's' : ''} corrido${g.dias > 1 ? 's' : ''}), devendo V. Sa. retornar ao trabalho em ${fmtData(volta)} (${DIAS_SEMANA[volta.getDay()]}).`, { justify: true, after: 4 });
+    linha('A remuneração das férias, acrescida do terço constitucional, será paga até 2 (dois) dias antes do início do período de gozo, conforme o art. 145 da CLT.', { justify: true, after: 4 });
+    const dataAviso = addDias(ini, -30);
+    linha(`Descalvado – SP, ${dataExtenso(dataAviso < new Date() ? new Date() : dataAviso)}.`, { after: 18 });
+    linha('______________________________________', { center: true, after: 0 }); linha(E.razao, { center: true, size: 10, after: 0 }); linha('Empregador', { center: true, size: 9, after: 14 });
+    linha(`Ciente em ____/____/________`, { after: 10 });
+    linha('______________________________________', { center: true, after: 0 }); linha(c.nome, { center: true, size: 10, after: 0 }); linha('Empregado(a)', { center: true, size: 9 });
+  } else {
+    linha('RECIBO DE FÉRIAS', { bold: true, size: 15, center: true, after: 10 });
+    linha(`Empregado(a): ${c.nome}${c.codigo ? '   ·   Código: ' + c.codigo : ''}${c.admissao ? '   ·   Admissão: ' + c.admissao : ''}`, { after: 2 });
+    linha(`Período aquisitivo: ${per}`, { after: 2 });
+    linha(`Período de gozo: ${fmtData(ini)} a ${fmtData(fim)} (${g.dias} dias)   ·   Retorno: ${fmtData(volta)}`, { after: 8 });
+    const tabela = [['Férias (' + g.dias + ' dias)', ''], ['1/3 constitucional', ''], ['Abono pecuniário', ''], ['Adiantamento 13º salário', ''], ['Total bruto', ''], ['INSS', ''], ['IRRF', ''], ['Outros descontos', ''], ['LÍQUIDO A RECEBER', '']];
+    doc.setFontSize(10);
+    for (const [k, v] of tabela) { doc.setFont('helvetica', /LÍQUIDO|Total/.test(k) ? 'bold' : 'normal'); doc.text(k, M, y); doc.text('R$ ______________', W - M, y, { align: 'right' }); doc.line(M, y + 1.5, W - M, y + 1.5); y += 7; }
+    y += 6;
+    linha(`Recebi de ${E.razao}, CNPJ ${E.cnpj}, a importância líquida acima, referente às férias do período aquisitivo ${per}, a serem gozadas de ${fmtData(ini)} a ${fmtData(fim)}, incluído o terço constitucional, pelo que dou plena e geral quitação.`, { justify: true, after: 6 });
+    linha(`Descalvado – SP, ${dataExtenso(addDias(ini, -2) < new Date() ? new Date() : addDias(ini, -2))}.`, { after: 18 });
+    linha('______________________________________', { center: true, after: 0 }); linha(c.nome, { center: true, size: 10, after: 0 }); linha('Empregado(a)', { center: true, size: 9, after: 14 });
+    linha('______________________________________', { center: true, after: 0 }); linha(E.razao, { center: true, size: 10, after: 0 }); linha('Empregador', { center: true, size: 9 });
+  }
+  doc.setFontSize(8); doc.setTextColor(120); doc.text(`Gerado pelo Fechamento de Ponto em ${fmtData(new Date())}`, W / 2, 290, { align: 'center' }); doc.setTextColor(0);
+  const nome = `${tipo === 'aviso' ? 'Aviso de ferias' : 'Recibo de ferias'} - ${c.nome.split(' ').slice(0, 2).join(' ')} - ${fmtData(ini).replace(/\//g, '-')}.pdf`;
+  await baixarArquivo(nome, doc.output('arraybuffer'), 'application/pdf');
+}
+
+/* ===================== Ficha do colaborador ===================== */
+async function mostrarFicha(empId, codigo) {
+  const c = (state.cadastro[empId] || []).find(x => x.codigo === codigo); if (!c) return;
+  $('#modal-titulo').textContent = `Ficha de ${c.nome}`;
+  $('#modal-body').innerHTML = '<p class="muted">Carregando...</p>'; $('#modal').hidden = false;
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  await carregarExames(empId); const ex = exames.dados[empId]; const reg = ex.porCodigo[codigo] || {}; const se = situacaoExame(c, reg, ex.config, hoje); const pr = se.proximo || {};
+  const pz = prazosDe(c);
+  const docsAll = await store.list('documentos'); const docsC = docsAll.filter(d => (d.codigo && d.codigo === codigo && d.empresa === empId) || (!d.codigo && norm(d.nome) === norm(c.nome))).sort((a, b) => String(b.inicio || b.emissao || '').localeCompare(String(a.inicio || a.emissao || '')));
+  const fechs = (await store.list('fechamentos')).filter(f => f.empresaId === empId && Array.isArray(f.linhas)).sort((a, b) => (b.competencia || '').localeCompare(a.competencia || ''));
+  const meses = fechs.map(f => ({ comp: f.competencia, l: f.linhas.find(x => (x.codigo && x.codigo === codigo) || norm(x.nome) === norm(c.nome)) })).filter(m => m.l && m.l.resumo);
+  const tot = meses.reduce((t, m) => { const v = m.l.valores || {}; t.faltas += v.diasFaltas || 0; t.hf += v.horasFaltas || 0; t.he += (v.he50 || 0) + (v.he100 || 0); t.premios += v.premioAssid ? 1 : 0; return t; }, { faltas: 0, hf: 0, he: 0, premios: 0 });
+  const gozos = ((c.feriasProg && c.feriasProg.gozos) || []).slice().sort((a, b) => String(b.inicio || b.mes).localeCompare(String(a.inicio || a.mes)));
+  const pers = (c.feriasProg && c.feriasProg.periodos) || [];
+  const linhaTxt = [];
+  const html = `<div class="ficha">
+    <div class="tiles">
+      <div class="tile"><div class="k">Admissão</div><div class="v" style="font-size:16px">${esc(c.admissao || '—')}</div><div class="s">${c.admissao ? (() => { const d = parseData(c.admissao); const m = Math.floor((hoje - d) / (30.44 * 86400000)); return `${Math.floor(m / 12)} ano${Math.floor(m / 12) === 1 ? '' : 's'} e ${m % 12} m${m % 12 === 1 ? 'ês' : 'eses'}`; })() : ''}</div></div>
+      <div class="tile"><div class="k">Código</div><div class="v" style="font-size:16px">${esc(c.codigo)}${c.codContab ? `<span class="s"> · contab. ${esc(c.codContab)}</span>` : ''}</div><div class="s">${esc(EMPRESAS[empId].rotulo)} · ${c.ativo === false ? 'desligado' : 'ativo'}</div></div>
+      <div class="tile"><div class="k">Fixos</div><div class="v" style="font-size:14px">${c.bonificacao ? 'prêmio ' + fmtValor(c.bonificacao) : '—'}</div><div class="s">${[c.ajudaCusto ? 'ajuda ' + fmtValor(c.ajudaCusto) : '', valeTransporteDe(empId, c) ? 'VT ' + fmtValor(valeTransporteDe(empId, c)) : ''].filter(Boolean).join(' · ') || ''}</div></div>
+      <div class="tile"><div class="k">Meses com espelho</div><div class="v">${meses.length}</div><div class="s">${tot.faltas} falta${tot.faltas === 1 ? '' : 's'} · ${tot.hf ? fmtDeve(tot.hf) : '0'} devidas · ${tot.premios} prêmio${tot.premios === 1 ? '' : 's'}</div></div>
+    </div>
+    <h3>Exames (PCMSO)</h3>
+    <table><tr><th>Último</th><td>${reg.ultimoData ? `${EX_TIPOS[reg.ultimoTipo] || ''} em ${dataIsoBr(reg.ultimoData)}${reg.resultado ? ' · ' + esc(reg.resultado) : ''}` : '<span class="muted">sem registro</span>'}</td></tr><tr><th>Próximo</th><td>${pr.tipo ? `${EX_TIPOS[pr.tipo]}${pr.data ? ' até ' + dataIsoBr(pr.data) : ''} ${situacaoChip(se)}` : '—'}</td></tr>${(reg.historico || []).length ? `<tr><th>Histórico</th><td>${reg.historico.map(h => `${EX_TIPOS[h.tipo] || h.tipo} ${dataIsoBr(h.data)}`).join(' · ')}</td></tr>` : ''}</table>
+    <h3>Férias</h3>
+    ${pers.length ? `<table><tr><th>Período aquisitivo</th><th>Direito</th><th>Gozados</th><th>Restantes</th><th>Limite</th></tr>${pers.map(pp => `<tr><td>${esc(pp.ini)} a ${esc(pp.fim)}</td><td>${pp.direito}</td><td>${pp.gozados}</td><td>${pp.restantes}</td><td>${esc(pp.limite)}</td></tr>`).join('')}</table>` : `<p>${pz.ferias ? (pz.ferias.adquirindo ? `período ${pz.ferias.rotulo} em aquisição, completa em ${fmtData(pz.ferias.fimAq)}` : `período ${pz.ferias.rotulo} pendente, conceder até ${fmtData(pz.ferias.limite)}`) : '—'}</p>`}
+    ${gozos.length ? `<p><strong>Férias lançadas:</strong> ${gozos.map(g => `${g.inicio ? dataIsoBr(g.inicio) + ' a ' + dataIsoBr(g.fim) : g.mes} (${g.dias}d)`).join(' · ')}</p>` : ''}
+    <h3>Prazos</h3>
+    <p>${pz.experiencia ? `Experiência: ${esc(pz.experiencia.rot)} em ${fmtData(pz.experiencia.data)}. ` : ''}${pz.afastamento ? `Afastamento: ${pz.afastamento.dias != null ? 'retorno previsto ' + fmtData(pz.afastamento.fim) : 'em andamento' + (pz.afastamento.descricao ? ' · ' + esc(pz.afastamento.descricao) : '')}.` : ''}${!pz.experiencia && !pz.afastamento ? '<span class="muted">nada em aberto</span>' : ''}</p>
+    <h3>Atestados e documentos (${docsC.length})</h3>
+    ${docsC.length ? `<table><tr><th>Data</th><th>Tipo</th><th>Período</th><th>Resumo</th></tr>${docsC.slice(0, 30).map(d => `<tr><td>${dataIsoBr(d.inicio || d.emissao) || ''}</td><td>${esc(d.subtipo || d.tipo)}${d.abona ? '' : d.tipo === 'atestado' ? '' : ''}</td><td>${d.inicio ? dataIsoBr(d.inicio) + (d.fim && d.fim !== d.inicio ? ' a ' + dataIsoBr(d.fim) : '') : ''}${d.dias ? ` (${d.dias}d)` : ''}</td><td>${esc((d.resumo || '').slice(0, 160))}</td></tr>`).join('')}</table>` : '<p class="muted">nenhum documento salvo</p>'}
+    <h3>Ponto por mês</h3>
+    ${meses.length ? `<table><tr><th>Mês</th><th>Faltas</th><th>Horas devidas</th><th>Horas extras</th><th>Prêmio</th><th>Ocorrências</th></tr>${meses.slice(0, 24).map(m => { const v = m.l.valores || {}; return `<tr><td>${esc(compRotulo(m.comp))}</td><td>${v.diasFaltas || 0}</td><td>${v.horasFaltas ? fmtDeve(v.horasFaltas) : '0'}</td><td>${(v.he50 || 0) + (v.he100 || 0) ? fmtHoras((v.he50 || 0) + (v.he100 || 0), 'contab') : '0'}</td><td>${v.premioAssid ? 'sim' : 'não'}</td><td>${esc((m.l.ocorrencias || []).join('; ').slice(0, 200))}</td></tr>`; }).join('')}</table>` : '<p class="muted">nenhum fechamento salvo com essa pessoa</p>'}
+    <div class="toolbar" style="margin-top:12px"><button class="btn" id="btn-ficha-copiar">Copiar ficha (texto)</button></div>
+  </div>`;
+  $('#modal-body').innerHTML = html;
+  $('#btn-ficha-copiar').addEventListener('click', async () => { const txt = `FICHA — ${c.nome} (${EMPRESAS[empId].rotulo})\n` + $('#modal-body').innerText.replace(/\n{3,}/g, '\n\n'); try { await navigator.clipboard.writeText(txt); toast('Ficha copiada'); } catch (e) { toast('Não consegui copiar'); } });
+}
+
+/* ===================== Câmera (celular) ===================== */
+$('#btn-doc-cam').addEventListener('click', () => $('#inp-doc-cam').click());
+$('#inp-doc-cam').addEventListener('change', () => { if ($('#inp-doc-cam').files.length) processarDocumentos($('#inp-doc-cam').files); $('#inp-doc-cam').value = ''; });
+$('#btn-ex-cam').addEventListener('click', () => $('#inp-ex-cam').click());
+$('#inp-ex-cam').addEventListener('change', () => { if ($('#inp-ex-cam').files.length) processarDocumentos($('#inp-ex-cam').files, 'aso'); $('#inp-ex-cam').value = ''; });
+
 function selecionarAba(id) {
   document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + id));
@@ -2515,6 +3649,10 @@ function selecionarAba(id) {
   if (id === 'historico') renderHistorico();
   if (id === 'prazos') { if (!renderPrazos._tocado) $('#sel-empresa-prazos').value = state.empresaId; renderPrazos(); }
   if (id === 'faltas') { if (!renderFaltas._tocado) $('#sel-empresa-faltas').value = state.empresaId; renderFaltas(); }
+  if (id === 'documentos') renderDocsSalvos();
+  if (id === 'exames') { if (!renderExames._tocado) $('#sel-empresa-ex').value = state.empresaId; renderExames(); }
+  if (id === 'ferias') { if (!renderFerias._tocado) $('#sel-empresa-fer').value = state.empresaId; renderFerias(); }
+  if (id === 'hoje') renderHoje();
 }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => selecionarAba(t.dataset.tab)));
 
@@ -2674,8 +3812,15 @@ $('#btn-cad-add').addEventListener('click', async () => {
   if (state.lidos.length && id === state.empresaId) { state.linhas = montarLinhas(state.lidos, state.linhas); renderResultado(); agendarSalvar(); }
 });
 $('#tbl-cad').addEventListener('change', async (e) => {
-  const t = e.target; if (!t.matches('[data-bon],[data-ajc],[data-vtr]')) return;
+  const t = e.target; if (!t.matches('[data-bon],[data-ajc],[data-vtr],[data-adm]')) return;
   const id = $('#sel-empresa-cad').value, cad = state.cadastro[id] || [];
+  if (t.matches('[data-adm]')) {
+    const c = cad[+t.dataset.adm]; if (!c) return;
+    const d = isoDate(t.value); c.admissao = d ? fmtData(d) : '';
+    await salvarCadastro(id);
+    if (state.lidos.length && id === state.empresaId) { state.linhas = montarLinhas(state.lidos, state.linhas); renderResultado(); agendarSalvar(); }
+    return;
+  }
   const campo = t.matches('[data-bon]') ? 'bonificacao' : t.matches('[data-ajc]') ? 'ajudaCusto' : 'valeTransporte';
   const c = cad[+(t.dataset.bon ?? t.dataset.ajc ?? t.dataset.vtr)]; if (!c) return;
   const v = parseValor(t.value);
@@ -2688,6 +3833,8 @@ $('#tbl-cad').addEventListener('click', async (e) => {
   const id = $('#sel-empresa-cad').value, cad = state.cadastro[id] || [];
   const h = e.target.closest('[data-hist]');
   if (h) { mostrarHistorico(id, h.dataset.hist, h.dataset.nome); return; }
+  const fi = e.target.closest('[data-ficha]');
+  if (fi) { mostrarFicha(id, fi.dataset.ficha); return; }
   const tog = e.target.closest('[data-tog]'), del = e.target.closest('[data-del]');
   if (tog) { const c = cad[+tog.dataset.tog]; c.ativo = c.ativo === false; await salvarCadastro(id); renderCadastro(); }
   if (del) {
@@ -2711,7 +3858,6 @@ $('#hist').addEventListener('click', async (e) => {
   }
 });
 window.addEventListener('beforeunload', (e) => { if (state.dirty) { salvarFechamento(); } });
-
 
 /* ===================== Janela de conexão com o GitHub ===================== */
 function abrirGh(erro) {
@@ -2760,6 +3906,8 @@ $('#gh-migrar').addEventListener('click', async () => {
   await carregarConfig();
   { const vt = await store.get('config/vale-transporte'); if (vt && vt.empresas) for (const k in vt.empresas) VALE_TRANSPORTE_FIXO[k] = vt.empresas[k]; }
   await Promise.all(Object.keys(EMPRESAS).map(carregarCadastro));
+  atualizarBadgeExames().catch(() => {});
+  renderHoje().catch((e) => console.warn('hoje', e));
   if (window.__SEED__) for (const id in window.__SEED__) { if (!state.cadastro[id] || !state.cadastro[id].length) { state.cadastro[id] = window.__SEED__[id].colaboradores; store.lsSet('cadastro/' + id, window.__SEED__[id]); } }
   const n = Object.values(state.cadastro).reduce((a, c) => a + c.length, 0);
   setStatus(store.origem === 'github' ? `Pronto · banco GitHub · ${n} colaboradores` : store.db ? `Pronto · ${n} colaboradores cadastrados` : `Pronto · dados só neste navegador · ${n} cadastrados`);
