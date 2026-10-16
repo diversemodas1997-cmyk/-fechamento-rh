@@ -199,6 +199,19 @@ td.copied input.cell { border: 1px dashed var(--warn); }
 details.cfg { margin-top: 18px; }
 details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted); }
 .cfg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+input[type="password"] { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; min-height: 36px; }
+/* Login: tela cheia por cima do app até entrar */
+.login { position: fixed; inset: 0; z-index: 14; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+.login-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; width: min(360px, 100%); padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.login-card h2 { margin: 0; }
+.login-card input { width: 100%; margin-top: 4px; }
+.login-erro { color: var(--crit); min-height: 1.2em; font-size: 13px; }
+.cfg-sec { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 12px; }
+.cfg-sec h3 { margin: 0 0 8px; font-size: 14px; }
+.usr-lista { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.usr-item { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; }
+.usr-item .n { flex: 1; min-width: 120px; }
+.usr-item .n small { color: var(--fg-muted); }
 </style>
 
 <div class="topbar">
@@ -218,6 +231,7 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
   <div class="status" id="status">Pronto</div>
   <button class="btn small" id="btn-gh" title="Conexão com o banco de dados no GitHub">Banco de dados</button>
   <button class="btn small" id="btn-cfg-app" title="Configurações do programa">Configurações</button>
+  <button class="btn small" id="btn-sair" title="Sair do programa" hidden>Sair</button>
 </div>
 
 <main>
@@ -424,7 +438,32 @@ details.cfg summary { cursor: pointer; font-weight: 500; color: var(--fg-muted);
     <option value="escuro">Escuro</option>
   </select></label>
   <p style="margin:10px 0 0;color:var(--fg-muted);font-size:13px">Fica guardado neste navegador.</p>
+  <div class="cfg-sec">
+    <h3>Usuários</h3>
+    <div class="usr-lista" id="usr-lista"></div>
+    <div id="usr-novo">
+      <div class="cfg-grid" style="margin-top:0">
+        <label>Usuário<br><input type="text" id="usr-login" autocomplete="off" style="width:100%"></label>
+        <label>Nome<br><input type="text" id="usr-nome" autocomplete="off" style="width:100%"></label>
+        <label>Senha<br><input type="password" id="usr-senha" autocomplete="new-password" style="width:100%"></label>
+      </div>
+      <label style="display:flex;align-items:center;gap:6px;margin-top:8px"><input type="checkbox" id="usr-admin"> Administrador (pode cadastrar e excluir usuários)</label>
+      <button class="btn primary small" id="usr-add" style="margin-top:8px">Cadastrar usuário</button>
+    </div>
+    <div id="usr-info" style="margin-top:8px;color:var(--fg-muted);font-size:13px"></div>
+  </div>
 </div></div>
+<div class="login" id="login" hidden><form class="login-card" id="login-form" autocomplete="on">
+  <h2>Fechamento de Ponto</h2>
+  <p id="login-msg" style="margin:0;color:var(--fg-muted)">Entre com seu usuário e senha.</p>
+  <label id="login-nome-wrap" hidden>Seu nome<input type="text" id="login-nome" autocomplete="name"></label>
+  <label>Usuário<input type="text" id="login-usuario" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+  <label>Senha<input type="password" id="login-senha" autocomplete="current-password"></label>
+  <label id="login-senha2-wrap" hidden>Repita a senha<input type="password" id="login-senha2" autocomplete="new-password"></label>
+  <div class="login-erro" id="login-erro"></div>
+  <button class="btn primary" type="submit" id="login-entrar">Entrar</button>
+  <button class="btn small" type="button" id="login-gh" style="align-self:flex-start">Banco de dados</button>
+</form></div>
 <div class="modal" id="modal-gh" hidden><div class="modal-card" style="width:min(560px,100%)">
   <div class="modal-head"><h2>Banco de dados no GitHub</h2><button class="btn small" id="gh-fechar">Fechar</button></div>
   <p style="margin:0 0 10px;color:var(--fg-muted)">Os cadastros e fechamentos ficam salvos como arquivos no repositório privado abaixo. Cada computador precisa colar o token uma vez; ele fica guardado só neste navegador.</p>
@@ -1309,7 +1348,7 @@ function parseCell(col, s) { if (col.tipo === 'horas') return parseHoras(s); if 
 function compDe(periodoInicio) { const m = (periodoInicio || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? `${m[3]}-${m[2]}` : ''; }
 function compRotulo(ym) { if (!ym) return ''; const [y, m] = ym.split('-'); const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']; return `${meses[+m - 1]}/${y}`; }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600); }
-const APP_VERSAO = 'v40';
+const APP_VERSAO = 'v41';
 function setStatus(s) { $('#status').textContent = s + ' · ' + APP_VERSAO; }
 // qualquer erro de programação aparece na tela (o painel do Claude não mostra o console)
 function pistaErro(err) { try { const st = String((err && err.stack) || '').split('\n').slice(1, 3).map(l => l.trim().replace(/^at /, '').replace(/https?:\/\/[^\s)]*\//g, '')).join(' < '); return st ? ' [' + st.slice(0, 160) + ']' : ''; } catch (_) { return ''; } }
@@ -3876,9 +3915,120 @@ function aplicarTema(t) {
   else if (t === 'escuro') document.documentElement.dataset.theme = 'dark';
   else delete document.documentElement.dataset.theme;
 }
-$('#btn-cfg-app').addEventListener('click', () => { $('#sel-tema').value = store.lsGet('tema') || 'auto'; $('#modal-cfg-app').hidden = false; });
+$('#btn-cfg-app').addEventListener('click', () => { $('#sel-tema').value = store.lsGet('tema') || 'auto'; renderUsuarios(); $('#modal-cfg-app').hidden = false; });
 $('#cfg-app-fechar').addEventListener('click', () => { $('#modal-cfg-app').hidden = true; });
 $('#sel-tema').addEventListener('change', (e) => { const t = e.target.value; store.lsSet('tema', t); aplicarTema(t); });
+
+/* ===================== Login (usuários em config/usuarios; senha guardada só como hash PBKDF2) ===================== */
+const auth = { usuarios: [], atual: null };
+function normUsuario(s) { return String(s || '').trim().toLowerCase(); }
+function hexDe(buf) { return Array.from(new Uint8Array(buf), b => b.toString(16).padStart(2, '0')).join(''); }
+async function hashSenha(senha, saltHex) {
+  const salt = Uint8Array.from(saltHex.match(/../g), h => parseInt(h, 16));
+  const chave = await crypto.subtle.importKey('raw', new TextEncoder().encode(senha), 'PBKDF2', false, ['deriveBits']);
+  return hexDe(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 150000 }, chave, 256));
+}
+async function novoUsuario(usuario, nome, senha, admin) {
+  const salt = hexDe(crypto.getRandomValues(new Uint8Array(16)));
+  return { usuario, nome, admin: !!admin, salt, hash: await hashSenha(senha, salt), criadoEm: new Date().toISOString() };
+}
+async function carregarUsuarios() { const d = await store.get('config/usuarios'); auth.usuarios = (d && Array.isArray(d.usuarios)) ? d.usuarios : []; }
+async function salvarUsuarios() { return store.set('config/usuarios', { usuarios: auth.usuarios, atualizadoEm: new Date().toISOString() }); }
+function usuarioLogado() { return auth.usuarios.find(u => u.usuario === auth.atual) || null; }
+function mostrarUsuarioLogado() {
+  const u = usuarioLogado();
+  $('#btn-sair').hidden = !u;
+  if (u) $('#btn-sair').textContent = `Sair (${u.nome || u.usuario})`;
+}
+// mostra a tela de login e só resolve quando alguém entrar (ou cria o primeiro usuário, se ainda não houver nenhum)
+function pedirLogin() {
+  return new Promise((resolve) => {
+    const primeiro = !auth.usuarios.length;
+    $('#login-msg').textContent = primeiro ? 'Nenhum usuário cadastrado ainda. Crie o primeiro usuário (ele será administrador).' : 'Entre com seu usuário e senha.';
+    $('#login-nome-wrap').hidden = !primeiro; $('#login-senha2-wrap').hidden = !primeiro;
+    $('#login-senha').autocomplete = primeiro ? 'new-password' : 'current-password';
+    $('#login-entrar').textContent = primeiro ? 'Criar e entrar' : 'Entrar';
+    $('#login-erro').textContent = ''; $('#login-senha').value = ''; $('#login-senha2').value = '';
+    $('#login').hidden = false;
+    setTimeout(() => (primeiro ? $('#login-nome') : $('#login-usuario')).focus(), 0);
+    $('#login-form').onsubmit = async (e) => {
+      e.preventDefault();
+      const usuario = normUsuario($('#login-usuario').value), senha = $('#login-senha').value;
+      const erro = (m) => { $('#login-erro').textContent = m; };
+      if (!usuario || !senha) return erro('Informe usuário e senha.');
+      $('#login-entrar').disabled = true;
+      try {
+        if (primeiro) {
+          if (senha.length < 4) return erro('A senha precisa ter pelo menos 4 caracteres.');
+          if (senha !== $('#login-senha2').value) return erro('As senhas não conferem.');
+          auth.usuarios = [await novoUsuario(usuario, $('#login-nome').value.trim() || usuario, senha, true)];
+          await salvarUsuarios();
+        } else {
+          const u = auth.usuarios.find(x => x.usuario === usuario);
+          if (!u || (await hashSenha(senha, u.salt)) !== u.hash) { $('#login-senha').value = ''; return erro('Usuário ou senha incorretos.'); }
+        }
+        auth.atual = usuario;
+        try { sessionStorage.setItem('fp:sessao', usuario); } catch (_) { }
+        $('#login').hidden = true; $('#login-form').onsubmit = null;
+        mostrarUsuarioLogado();
+        resolve(usuarioLogado());
+      } finally { $('#login-entrar').disabled = false; }
+    };
+  });
+}
+$('#login-gh').addEventListener('click', () => abrirGh(store.erro));
+$('#btn-sair').addEventListener('click', () => { try { sessionStorage.removeItem('fp:sessao'); } catch (_) { } location.reload(); });
+
+function renderUsuarios() {
+  const eu = usuarioLogado(), admin = !!(eu && eu.admin);
+  $('#usr-novo').hidden = !admin;
+  $('#usr-info').textContent = admin ? '' : 'Só um administrador pode cadastrar ou excluir usuários. Você pode trocar a sua senha.';
+  const lista = admin ? auth.usuarios : auth.usuarios.filter(u => u === eu);
+  $('#usr-lista').innerHTML = lista.map(u => `<div class="usr-item"><div class="n"><b>${esc(u.nome || u.usuario)}</b> <small>${esc(u.usuario)}${u.admin ? ' · administrador' : ''}${u === eu ? ' · você' : ''}</small></div>
+    <button class="btn small" data-usr-senha="${esc(u.usuario)}">Trocar senha</button>
+    ${admin && u !== eu ? `<button class="btn small" data-usr-admin="${esc(u.usuario)}">${u.admin ? 'Tirar admin' : 'Tornar admin'}</button><button class="btn small danger" data-usr-del="${esc(u.usuario)}">Excluir</button>` : ''}</div>`).join('') || '<div class="muted">Nenhum usuário.</div>';
+}
+$('#usr-add').addEventListener('click', async () => {
+  const eu = usuarioLogado(); if (!eu || !eu.admin) return;
+  const usuario = normUsuario($('#usr-login').value), nome = $('#usr-nome').value.trim(), senha = $('#usr-senha').value;
+  if (!usuario || !senha) { toast('Informe usuário e senha'); return; }
+  if (/\s/.test(usuario)) { toast('O usuário não pode ter espaços'); return; }
+  if (senha.length < 4) { toast('A senha precisa ter pelo menos 4 caracteres'); return; }
+  if (auth.usuarios.some(u => u.usuario === usuario)) { toast('Esse usuário já existe'); return; }
+  auth.usuarios.push(await novoUsuario(usuario, nome || usuario, senha, $('#usr-admin').checked));
+  const ok = await salvarUsuarios();
+  $('#usr-login').value = ''; $('#usr-nome').value = ''; $('#usr-senha').value = ''; $('#usr-admin').checked = false;
+  renderUsuarios(); toast(ok ? 'Usuário cadastrado' : 'Usuário salvo só neste navegador');
+});
+$('#usr-lista').addEventListener('click', async (e) => {
+  const eu = usuarioLogado(); if (!eu) return;
+  const bs = e.target.closest('[data-usr-senha]'), ba = e.target.closest('[data-usr-admin]'), bd = e.target.closest('[data-usr-del]');
+  if (bs) {
+    const u = auth.usuarios.find(x => x.usuario === bs.dataset.usrSenha); if (!u || (u !== eu && !eu.admin)) return;
+    const item = bs.closest('.usr-item');
+    if (item.querySelector('.usr-nova-senha')) return;
+    item.insertAdjacentHTML('beforeend', `<div class="usr-nova-senha" style="display:flex;gap:6px;width:100%"><input type="password" placeholder="Nova senha" autocomplete="new-password" style="flex:1"><button class="btn small primary">Salvar</button></div>`);
+    const inp = item.querySelector('.usr-nova-senha input'); inp.focus();
+    const salvar = async () => {
+      if (inp.value.length < 4) { toast('A senha precisa ter pelo menos 4 caracteres'); return; }
+      const n = await novoUsuario(u.usuario, u.nome, inp.value, u.admin); u.salt = n.salt; u.hash = n.hash;
+      const ok = await salvarUsuarios(); renderUsuarios(); toast(ok ? 'Senha alterada' : 'Senha alterada só neste navegador');
+    };
+    item.querySelector('.usr-nova-senha button').addEventListener('click', salvar);
+    inp.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') salvar(); });
+    return;
+  }
+  if (!eu.admin) return;
+  if (ba) {
+    const u = auth.usuarios.find(x => x.usuario === ba.dataset.usrAdmin); if (!u || u === eu) return;
+    u.admin = !u.admin; await salvarUsuarios(); renderUsuarios();
+  }
+  if (bd) {
+    const u = auth.usuarios.find(x => x.usuario === bd.dataset.usrDel); if (!u || u === eu) return;
+    if (bd.dataset.confirm !== '1') { bd.dataset.confirm = '1'; bd.textContent = 'Confirmar exclusão'; setTimeout(() => { bd.dataset.confirm = ''; bd.textContent = 'Excluir'; }, 4000); return; }
+    auth.usuarios = auth.usuarios.filter(x => x !== u); await salvarUsuarios(); renderUsuarios(); toast('Usuário excluído');
+  }
+});
 
 /* ===================== Janela de conexão com o GitHub ===================== */
 function abrirGh(erro) {
@@ -3924,6 +4074,11 @@ $('#gh-migrar').addEventListener('click', async () => {
   const fmtSalvo = store.lsGet('fmt'); if (fmtSalvo) { state.fmt = fmtSalvo; $('#sel-fmt').value = fmtSalvo; }
   setStatus('Conectando...');
   await store.init();
+  if (store.origem !== 'github' && !(window.claude && window.claude.use)) abrirGh(store.erro);
+  await carregarUsuarios();
+  let sessao = null; try { sessao = sessionStorage.getItem('fp:sessao'); } catch (_) { }
+  if (sessao && auth.usuarios.some(u => u.usuario === sessao)) { auth.atual = sessao; mostrarUsuarioLogado(); }
+  else { setStatus('Aguardando login'); await pedirLogin(); setStatus('Carregando...'); }
   await carregarConfig();
   { const vt = await store.get('config/vale-transporte'); if (vt && vt.empresas) for (const k in vt.empresas) VALE_TRANSPORTE_FIXO[k] = vt.empresas[k]; }
   await Promise.all(Object.keys(EMPRESAS).map(carregarCadastro));
@@ -3932,7 +4087,6 @@ $('#gh-migrar').addEventListener('click', async () => {
   if (window.__SEED__) for (const id in window.__SEED__) { if (!state.cadastro[id] || !state.cadastro[id].length) { state.cadastro[id] = window.__SEED__[id].colaboradores; store.lsSet('cadastro/' + id, window.__SEED__[id]); } }
   const n = Object.values(state.cadastro).reduce((a, c) => a + c.length, 0);
   setStatus(store.origem === 'github' ? `Pronto · banco GitHub · ${n} colaboradores` : store.db ? `Pronto · ${n} colaboradores cadastrados` : `Pronto · dados só neste navegador · ${n} cadastrados`);
-  if (store.origem !== 'github' && !(window.claude && window.claude.use)) abrirGh(store.erro);
 })();
 </script>
 
