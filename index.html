@@ -439,6 +439,13 @@ input[type="password"] { background: var(--surface); border: 1px solid var(--lin
   </select></label>
   <p style="margin:10px 0 0;color:var(--fg-muted);font-size:13px">Fica guardado neste navegador.</p>
   <div class="cfg-sec">
+    <h3>Leitura automática (IA)</h3>
+    <p style="margin:0 0 8px;color:var(--fg-muted);font-size:13px">Para ler ASO e atestados fora do Claude, cole uma chave da API da Anthropic (console.anthropic.com → API Keys). Fica guardada só neste navegador; cada leitura gasta alguns centavos na conta da chave.</p>
+    <input type="password" id="ia-chave" autocomplete="off" placeholder="sk-ant-..." style="width:100%">
+    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary small" id="ia-salvar">Salvar chave</button><button class="btn small danger" id="ia-remover">Remover</button></div>
+    <div id="ia-info" style="margin-top:8px;color:var(--fg-muted);font-size:13px"></div>
+  </div>
+  <div class="cfg-sec">
     <h3>Usuários</h3>
     <div class="usr-lista" id="usr-lista"></div>
     <div id="usr-novo">
@@ -1348,7 +1355,7 @@ function parseCell(col, s) { if (col.tipo === 'horas') return parseHoras(s); if 
 function compDe(periodoInicio) { const m = (periodoInicio || '').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m ? `${m[3]}-${m[2]}` : ''; }
 function compRotulo(ym) { if (!ym) return ''; const [y, m] = ym.split('-'); const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']; return `${meses[+m - 1]}/${y}`; }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600); }
-const APP_VERSAO = 'v41';
+const APP_VERSAO = 'v42';
 function setStatus(s) { $('#status').textContent = s + ' · ' + APP_VERSAO; }
 // qualquer erro de programação aparece na tela (o painel do Claude não mostra o console)
 function pistaErro(err) { try { const st = String((err && err.stack) || '').split('\n').slice(1, 3).map(l => l.trim().replace(/^at /, '').replace(/https?:\/\/[^\s)]*\//g, '')).join(' < '); return st ? ' [' + st.slice(0, 160) + ']' : ''; } catch (_) { return ''; } }
@@ -2727,7 +2734,42 @@ async function sampleDocs() {
   if (docs.sample || docs.sampleTentado) return docs.sample;
   docs.sampleTentado = true;
   try { if (window.claude && window.claude.use) docs.sample = await window.claude.use('sample'); } catch (e) { docs.sample = null; }
+  if (!docs.sample) { docs.sampleTentado = false; docs.sample = sampleApiAnthropic(); }
   return docs.sample;
+}
+// fora do Claude (GitHub Pages / cópia offline): chama a API da Anthropic direto com a chave salva em Configurações
+function iaChave() { try { return localStorage.getItem('ia:chave') || ''; } catch (e) { return ''; } }
+function sampleApiAnthropic() {
+  const chave = iaChave();
+  if (!chave) return null;
+  return {
+    async limits() { return { images: { maxCount: 3 } }; },
+    async json(prompt, opts) {
+      const conteudo = [];
+      for (const img of (opts && opts.images) || []) {
+        const url = await blobParaDataUrl(img);
+        conteudo.push({ type: 'image', source: { type: 'base64', media_type: img.type || 'image/jpeg', data: url.split(',')[1] } });
+      }
+      conteudo.push({ type: 'text', text: prompt });
+      let r;
+      try {
+        r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': chave, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 4096, messages: [{ role: 'user', content: conteudo }] }) });
+      } catch (e) { throw { code: 'rede', message: 'Sem conexão com a IA (api.anthropic.com). Confira a internet e tente de novo.' }; }
+      const corpo = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        const msg = (corpo.error && corpo.error.message) || ('HTTP ' + r.status);
+        if (r.status === 401 || r.status === 403) throw { code: 'chave_invalida', message: 'A chave da IA foi recusada (' + msg + '). Confira em Configurações → Leitura automática.' };
+        if (r.status === 429 || r.status === 529) throw { code: 'rate_limited' };
+        if (r.status === 400 && /image/i.test(msg)) throw { code: 'image_rejected' };
+        if (r.status === 400 && /credit|billing/i.test(msg)) throw { code: 'sem_credito', message: 'A conta da chave da IA está sem crédito. Adicione crédito em console.anthropic.com → Billing.' };
+        throw { code: 'api', message: 'Erro da IA: ' + msg };
+      }
+      if (corpo.stop_reason === 'refusal') throw { code: 'refused' };
+      const texto = (corpo.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+      const m = texto.match(/\{[\s\S]*\}/);
+      try { return JSON.parse(m ? m[0] : texto); } catch (e) { throw { code: 'invalid_json' }; }
+    }
+  };
 }
 // reduz a imagem (foto de celular) para mandar à IA e guardar uma miniatura
 function redimensionar(blob, max, qualidade) {
@@ -2854,7 +2896,7 @@ async function analisarDocumento(file, modo) {
   lista.unshift(card); render();
   try {
     const sample = await sampleDocs();
-    if (!sample) throw { code: 'sem_claude', message: 'A leitura automática só funciona na versão online do aplicativo (aberta pelo Claude). Nesta cópia não há IA disponível.' };
+    if (!sample) throw { code: 'sem_claude', message: 'Para a leitura automática funcionar nesta versão, cole a chave da IA em Configurações (botão no topo) → Leitura automática (IA) e mande o arquivo de novo.' };
     let imagens = [], texto = '', nPag = 1;
     if (/pdf$/i.test(file.name) || file.type === 'application/pdf') { const r = await paginasDoPdf(file, 3); imagens = r.imagens; texto = r.texto; nPag = r.paginas; }
     else imagens = [await redimensionar(file, 1600, 0.85)];
@@ -3915,7 +3957,9 @@ function aplicarTema(t) {
   else if (t === 'escuro') document.documentElement.dataset.theme = 'dark';
   else delete document.documentElement.dataset.theme;
 }
-$('#btn-cfg-app').addEventListener('click', () => { $('#sel-tema').value = store.lsGet('tema') || 'auto'; renderUsuarios(); $('#modal-cfg-app').hidden = false; });
+$('#btn-cfg-app').addEventListener('click', () => { $('#sel-tema').value = store.lsGet('tema') || 'auto'; $('#ia-chave').value = ''; $('#ia-info').textContent = window.claude && window.claude.use ? 'Aberto pelo Claude: a IA já funciona sem chave.' : iaChave() ? 'Chave salva neste navegador (…' + iaChave().slice(-4) + ').' : 'Nenhuma chave salva: a leitura de ASO/atestado não funciona nesta versão.'; renderUsuarios(); $('#modal-cfg-app').hidden = false; });
+$('#ia-salvar').addEventListener('click', () => { const k = $('#ia-chave').value.trim(); if (!/^sk-ant-/.test(k)) { $('#ia-info').textContent = 'A chave começa com "sk-ant-". Confira e cole de novo.'; return; } try { localStorage.setItem('ia:chave', k); } catch (e) { } docs.sample = null; docs.sampleTentado = false; $('#ia-chave').value = ''; $('#ia-info').textContent = 'Chave salva neste navegador (…' + k.slice(-4) + ').'; toast('Chave da IA salva'); });
+$('#ia-remover').addEventListener('click', () => { try { localStorage.removeItem('ia:chave'); } catch (e) { } docs.sample = null; docs.sampleTentado = false; $('#ia-info').textContent = 'Chave removida.'; });
 $('#cfg-app-fechar').addEventListener('click', () => { $('#modal-cfg-app').hidden = true; });
 $('#sel-tema').addEventListener('change', (e) => { const t = e.target.value; store.lsSet('tema', t); aplicarTema(t); });
 
